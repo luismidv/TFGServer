@@ -62,6 +62,11 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173"
 ]
 
+CSRF_COOKIE_NAME = 'csrftoken'
+CSRF_COOKIE_HTTPONLY = False  # Make sure it's accessible by JavaScript
+CSRF_COOKIE_SAMESITE = 'None'  # Needed for cross-origin requests
+CSRF_COOKIE_SECURE = True  #
+
 CORS_ALLOW_ALL_ORIGINS = True
 
 CSRF_TRUSTED_ORIGINS = [
