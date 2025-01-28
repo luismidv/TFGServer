@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,8 @@ SECRET_KEY = 'django-insecure-d%*3v$s916u#p_*+i-j-%n%!u6dut^qsqqzo#k*1hp)=*53t&!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tfgserver.onrender.com']
+ALLOWED_HOSTS = ['tfgserver.onrender.com',
+                 "0.0.0.0", os.getenv("RENDER_EXTERNAL_HOSTNAME", "")]
 
 
 # Application definition
