@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset ='UTF-8'/>
+        
+        <link href = "../styles/output.css" rel = "stylesheet">
+        <link href = "../styles/index1.css" rel = "stylesheet">
+        <link href = "../styles/roomStyle.css" rel = "stylesheet">
+        
+    </head>
+
+    <body>
+        <div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]">
+            <div class="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]">
+            </div>
+        </div>
+        <img class = 'mainlogo' src= '../../media1/company.jpg'>
+        <h1 class = 'h1title'> ROOMATCH </h1>
+        <p class ="pslogan"> Improving your house sharing experience</p>
+        
+
+        <form class = "search-bar-form">
+            <div class = 'menu-div'>
+                <a class = 'rooti-button' href = "../../index.html" target = "_blank"> &emsp;&emsp;
+                    <p class = "link-text"> Home</p>
+                <img src="../../media1/house1.svg">
+                </a>
+                
+                <a class = 'rooti-button' href = "./template.html" target = "_blank"> &emsp;&emsp;
+                    <p class = "link-text"> Rooms</p>
+                <img src="../../media1/beds-pillow.svg">
+                </a>
+                
+                <a class = 'rooti-button' href = "./profile.html" target = "_blank"> &emsp;&emsp;
+                    <p class = "link-text"> Profile</p>
+                <img src = '../../media1/profile.svg'>
+                </a>
+                
+                <a class = 'rooti-button' href = "./contact.html" target = "_blank"> &emsp;&emsp;
+                    <p class = "link-text"> Contact</p>
+                <img src ='../../media1/agenda-phone-number-svgrepo-com.svg'>
+                </a>
+            </div> 
+                
+            <input
+                class = "room-search" type ="search" name = "q" placeholder="Where do you need a room">
+                <img class = 'search-img' src = '../../media1/search-svgrepo-com.svg'>
+            </input>
+            <button class ="submit-search" type = "submit"></button>
+            <a class = 'log-in-button' href = "./login.html">
+                <p>Access</p>
+            </a>
+        </form>
+
+        <section class ='form-section'>
+            <form class = 'form-class' method = 'post' action = '/'>
+                
+                <fieldset class = 'form-fieldset'>
+                    <legend class = 'form-legend-info'> Personal information</legend>
+                    
+
+                    <label class = 'label-info' for = "name">Nombre:</label>
+                    <input class = 'input-info' type = 'text' id = 'name' name = 'name'
+                    placeholder="Your name" required> </br></br>
+
+                    <label class = 'label-info' for = "surnames">Surname:</label>
+                    <input class = 'input-info-surname' type = "text" id = surnames surname = "surnames"
+                    placeholder="Your surnames" required> </br></br>
+
+                    <label class = 'label-info' for = "age">Age:</label>
+                    <input class = 'input-info-age' type = "number" id = 'age' edad = 'age'
+                    placeholder="Your age" required></br></br>
+
+                    <label class = 'label-info' for = "email">Email:</label>
+                    <input class = 'input-info-email' type = "email" id = "email" email = "email"
+                    placeholder="Your email" required> </br></br>
+                </fieldset>
+
+                <fieldset>
+                    <legend class = 'form-legend-routine'>Routine information </legend></br>
+
+                    <label class = 'label-routine' for = "worktime"> Do you work during the morning, the night or both of them?</label>
+                    <select name='worktime' id = "id-worktime">
+                        <option value = ''> Both of them</option>
+                        <option value = 'morning'> Morning</option>
+                        <option value = 'night'> Night</option>
+                    </select>
+                    </br>
+
+                    <label class = 'label-routine' for = 'biorythm'> When out of work, are you a morning or night person?</label>
+                    <select name = 'biorythm' id = 'id-biorythm'> 
+                        <option value = 'morning'> Morning</option>
+                        <option value = 'night'> Night</option>
+                    </select>
+                    </br>
+
+                    <label class = 'label-routine' for = 'studies'> Which is your studies level?</label>
+                    <select name = 'level_studies' id = 'level_studies'>
+                        <option value = 'secondary'> Secondary </option>
+                        <option value = 'universitary'>Universitary </option>
+                    </select>
+                    </br>
+
+                    <label class = 'label-routine' for = 'reading'> Do you usually read?</label>
+                    <select name = 'reading' id = 'id-read'>
+                        <option value = 'yes'> Yes </option>
+                        <option value = 'no'>  No</option>
+                    </select>
+                    </br>   
+
+                    <label class = 'label-routine' for = 'pets'> Are you fine with having pets at home?</label>
+                    <select name = 'pets' id = 'id-pets'>
+                        <option value = 'yes'> Yes</option>
+                        <option value = 'No'> No </option>
+                    </select>
+                    </br>
+
+                    <label class = 'label-routine' for = 'cook'> Do you usually cook?</label>
+                    <select name = 'cook' id = 'id-cook'>
+                        <option value = 'yes'> Yes</option>
+                        <option value = 'No'> No </option>
+                    </select>
+                    </br>
+                    <label class = 'label-routine' for = 'cook'> Do you often do sport?</label>
+                    <select name = 'sport' id = 'id-sport'>
+                        <option value = 'yes'> Yes</option>
+                        <option value = 'No'> No </option>
+                    </select>
+                    </br>
+
+                    <label class = 'label-routine' for = 'smoker'> Do you smoke?</label>
+                    <select name = 'smoker' id = 'id-smoker'>
+                        <option value = 'yes'> Yes</option>
+                        <option value = 'No'> No </option>
+                    </select>
+                    </br>
+
+                    <label class = 'label-routine' for = 'orderliness'> Do you consider yourself an organized person?</label>
+                    <select name = 'orderliness' id = 'id-order'>
+                        <option value = 'yes'> Yes</option>
+                        <option value = 'No'> No </option>
+                    </select>
+                    </br>
+                    <button class = 'send-button' type ='submit'> Send
+                    <button class = 'send-button1' type ='submit'> Save for now</button>
+                    </button>
+                </fieldset>
+                <p class ="declaration"> The request of this information is only made for giving the best experience to our customers. </p>
+             </form>
+        </section>
+
+        <section class ='why-us'>
+            <h1 class = 'why-us-h1'> Why choosing Roomatch </h1>
+            <p class = 'why-us-p'> </br>Find your dream room </br></br>Match incredible partners </br> </br>
+            Contact with them </br> </br> Live the best sharing experience
+            <p> Sharing a home can be a difficult experience, </br> our idea is to turn that experience into</br> 
+            <strong>The greatest one possible.</strong></br></p>
+            <img class = 'img-banner' src = '../../media1/roombanner8.jpg'>
+        </section>
+        
+        <section class = 'about-us'>
+            <h1 class = 'about-us-h1'> About us</h1>
+            <div class = 'about-us-div'>
+                <div class = 'div-text-about'>
+                    <p class = 'p-div-section'> Our purpose </p>
+                        <p class = "purpose-description"> Mainly our purpose is to help people have</br> the best  experience when sharing a home</p>
+                </div>
+                <div class = 'div-text-about'>
+                    <p class = 'p-div-section'> Who are we?</p>
+                        <p class = "who-description"> Company created at 2024 as a final degreee project </br> with the idea of improving students sharing experience</p>
+                </div>      
+
+                <div class = 'div-text-about'>
+                    <p class = 'p-div-section'> Our team</p>
+                        <p class = 'team-description'> Our team is conformed by 1 person. </br> A computer science student with focus on Machine learning</p>
+               </div>
+
+                <div class = 'div-text-about'>
+                    <p class = 'p-div-section'> Work with us</p>
+                        <p class = 'work-description'> Feel free to message us via our email or linkedin</br> if you considering working with us</p>
+                </div>
+            </div>
+        </section>
+        
+        
+        <section class = 'about-us'>
+            <h1 class = 'about-us-h1'> About us</h1>
+            <div class = 'about-us-div'>
+                <div class = 'div-text-about'>
+                    <p class = 'p-div-section'> Our purpose </p>
+                        <p class = "purpose-description"> Mainly our purpose is to help people have</br>  the best experience when sharing a home</p>
+                </div>
+                <div class = 'div-text-about'>
+                    <p class = 'p-div-section'> Who are we?</p>
+                        <p class = "who-description"> Company created at 2024 as a final degreee project </br> with the idea of improving students sharing experience</p>
+                </div>      
+
+                <div class = 'div-text-about'>
+                    <p class = 'p-div-section'> Our team</p>
+                        <p class = 'team-description'> Our team is conformed by 1 person. </br> A computer science student with focus on Machine learning</p>
+               </div>
+
+                <div class = 'div-text-about'>
+                    <p class = 'p-div-section'> Work with us</p>
+                        <p class = 'work-description'> Feel free to message us via our email or linkedin</br> if you considering working with us</p>
+                </div>
+            </div>
+            
+        </section>
+
+        
+        
+        <script type = "module" src = '../main.jsx'></script>
+
+  
+    </body>
+    </head>
+</html> 

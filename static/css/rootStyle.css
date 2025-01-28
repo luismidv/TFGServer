@@ -1,0 +1,91 @@
+.banners-flex{
+    display: flex;
+    position: absolute;
+    justify-content: space-around;
+    top: 650px;
+    left: 480px;
+    width: 1300px;
+    height: 800px;
+}
+
+.bannerclass{
+    position: absolute;
+    left: -250px;
+    top: -100px;
+    width: 400px;
+    height: 400px;
+    background-color: transparent;
+    border-radius:15px;
+    border-color: #5b5a5a;
+    
+}
+
+.bannerclass + .bannerclass{
+    position: absolute;
+    left: 300px;
+}
+
+.bannerclass + .bannerclass + .bannerclass{
+    position: absolute;
+    left: 850px;
+}
+
+.bannerclass + .bannerclass + .bannerclass + .bannerclass{
+    position: absolute;
+    left: -250px;
+    top: 350px;
+}
+
+.bannerclass + .bannerclass + .bannerclass + .bannerclass + .bannerclass{
+    position: absolute;
+    left: 300px;
+    top:  350px;
+}
+.bannerclass + .bannerclass + .bannerclass + .bannerclass + .bannerclass + .bannerclass{
+    position: absolute;
+    left: 850px;
+    top: 350px;
+}
+
+.bannerclass img{
+    width:500px;
+    height:292px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+
+.bannerclass p{
+    position: relative;
+    font-family: "Proxima Nova", system-ui, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    top:40px;
+}
+
+.details {
+    position: relative;
+    display: block;
+    left: 300px;
+    font-family: "Proxima Nova", system-ui, sans-serif;
+    width: 100px;
+    height:50px;
+    background-color: #545dc7;
+    color: white;
+    border-radius: 15px;
+    font-weight: bold;
+    text-align:start;
+    padding-top: 10px;
+    padding-left: 3px;
+}
+
+.details:hover{
+    transition-duration: 0.5s;
+    background-color: white;
+    color:#545dc7;
+    border-color: #545dc7;
+    border-width: 1px;
+}
+
+
+
+

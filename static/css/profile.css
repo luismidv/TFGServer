@@ -1,0 +1,75 @@
+
+.profile-section{
+    position: absolute;
+    top:300px;
+    left:00px;
+    width: 70%;
+    height:1000px;
+    
+
+}
+.profile-section img{
+    position: relative;
+    left: 1280px;
+    top:150px;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.form-class{
+    position: absolute;
+    top: 300px;
+    left:300px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.profile-title{
+    position: relative;
+    color: #303ab2;
+    left: 50px;
+    top: -150px;
+    font-size: 64px;
+    font-weight:bold;
+}
+
+.form-fieldset label{
+    font-size: 20px;
+    left: 60px;
+    font-weight: bold;
+}
+
+.form-fieldset input{
+    width:500px;
+    height: 100px;
+    border-radius: 30px;
+    text-align:left;
+    
+}
+
+.profile-label{
+    position: relative;
+    left: 50px;
+    ;
+}
+
+.profile-button{
+    position: relative;
+    background-color: #303ab2;
+    color:aliceblue;
+    top:50px;
+    left: 1300px;
+    border-radius: 20px;
+    width:100px;
+}
+
+.selectors-fieldset select{
+    position: relative;
+    
+    
+}
+
+
+

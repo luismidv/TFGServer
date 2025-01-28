@@ -1,0 +1,221 @@
+#room-container{
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    display: flex;
+    top: 450px;
+    border-radius: 30px;
+    width: 1800px;
+    height: 1300px;
+    left:-220px;
+    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 50px;
+    
+}
+
+.room-label{
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    left: 300px;
+    background-color: #f1f1f7;
+    width: 800px;
+    height:500px;
+    border-radius: 30px;
+
+}
+
+.room-banner-img{
+    position: relative;
+    left: 400px;
+    border-radius: 25px;
+    width: 400px;
+    height: 500px;
+    
+    
+}
+
+.price-p{
+    position: relative;
+    left: 33px;
+    top: -485px;
+    color: #666ec6;
+    font-size: 36px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    
+}
+
+.desc-p{
+    position: relative;
+    left:30px;
+    top: -470px;
+    color: #666ec6;
+    font-size: 24px;
+    font-weight: bold;
+    
+    
+}
+
+.metters-p{
+    position: relative;
+    color: #f5f5f6;
+    font-family: 'Roboto', sans-serif;
+    top:03px;
+    left: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    
+    
+}
+.room-banner-svg{
+    position: relative;
+    top: -580px;
+    left: 220px;
+    width: 50px;
+    height: 50px;
+}
+
+.description-p{
+    position: absolute;
+    top: 350px;
+    left: 40px;
+    font-size: 18px;
+    color:#666ec6;
+    
+
+}
+
+.room-info{
+    display: block;
+    position: relative;
+    top:-360px;
+    left: 25px;
+    width: 350px;
+    height: 40px;
+    border-radius: 14px;
+    border-width: 1px;
+    color: white;
+    padding-left: 160px;
+    padding-top: 8px;
+    background-color: #646cc9;
+    border-color:#646cc9;;
+    
+    
+}
+.room-info:hover{
+    background-color: #8289d4;
+    transition-duration: 0.5s;
+    color:antiquewhite;
+    
+}
+
+
+
+.head-info{
+    position: relative;
+    background-color: #666ec6;
+    width: 80px;
+    height: 30px;
+    top:-462px;
+    left:30px;
+    border-radius: 25px;
+} 
+
+.head-info +.head-info{
+    position: relative;
+    background-color: #666ec6;
+    width: 80px;
+    height: 30px;
+    top:-492px;
+    left:120px;
+    border-radius: 25px;
+    
+}
+
+.head-info + .head-info +.head-info{
+    position: relative;
+    background-color: #666ec6;
+    width: 80px;
+    height: 30px;
+    top:-522px;
+    left:210px;
+    border-radius: 25px;
+    
+}
+
+.bathroom-img{
+    position: relative;
+    top:-26px;
+    left:35px;
+    width:30px;
+    height:30px;
+    
+}
+.bathrooms-p{
+    position: relative;
+    left: 15px;
+    top: 2px;
+    color: #ececed;
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+
+.bedroom-img{
+    position: relative;
+    width:30px;
+    height:30px;
+    left:35px;
+    top:-40px;
+    
+}
+
+.bedroom-p{
+    position: relative;
+    left: 15px;
+    top:1px;
+    color: #f7f7f9;
+    font-size: 18px;
+    font-weight: bold;
+    
+
+}
+
+.profile-img{
+    position: relative;
+    width:30px;
+    height: 30px;
+    top: -458px;
+    left:30px;
+    
+}
+.username-p{
+    position: relative;
+    top: -482px;
+    left:90px;
+    color: #666ec6;
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+
+.direction-img{
+    position: relative;
+    width:35px;
+    height: 35px;
+    top: -465px;
+    left:27px;
+    
+}
+
+.direction-p{
+    position: relative;
+    top: -490px;
+    left:90px;
+    color: #666ec6;
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+
