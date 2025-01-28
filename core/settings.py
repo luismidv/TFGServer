@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'room_api',
     'rest_framework',
     'corsheaders',
-    'sslserver',
+    
 ]
 
 MIDDLEWARE = [
