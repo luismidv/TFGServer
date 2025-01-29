@@ -117,18 +117,12 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+import dj_database_url
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",  # PostgreSQL backend
-        "NAME": "roomatch",               # Name of your database
-        "USER": "luismidv",               # PostgreSQL username
-        "PASSWORD": "J7QO7lVyhKk9vFZMyGSc5XYJgCT2r1hY",       # PostgreSQL password
-        "HOST": "postgresql://luismidv:J7QO7lVyhKk9vFZMyGSc5XYJgCT2r1hY@dpg-cucvp4an91rc73em2v40-a/roomatch",                        # Use "localhost" or your database server's IP
-        "PORT": "5432",                             # Default PostgreSQL port
-    }
-}
-
+     'default': dj_database_url.config(
+         default=os.environ.get('postgresql://luismidv:J7QO7lVyhKk9vFZMyGSc5XYJgCT2r1hY@dpg-cucvp4an91rc73em2v40-a.frankfurt-postgres.render.com/roomatch')
+     )
+ }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
