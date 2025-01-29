@@ -96,6 +96,18 @@ TEMPLATES = [
     #         ],
     #     },
     # },
+
+    "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],  # Keep empty since you don’t use templates
+        "APP_DIRS": True,  # Required for Django Admin
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
