@@ -2,24 +2,31 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.middleware.csrf import get_token
+import json
 
+def csrf_token_view(request):
+    """Returns CSRF token in a response."""
+    return JsonResponse({'csrfToken': get_token(request)})
 
+@csrf_exempt  # Remove this in production, use proper CSRF handling
 # Create your views here.
 def my_api_view(request):
-    if request.method == 'POST':
+    """Handles login with CSRF token"""
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            email = data.get("email")
+            password = data.get("password")
+            
+            # Simulate authentication logic
+            if email == "test@example.com" and password == "password123":
+                return JsonResponse({"message": "Login successful"}, status=200)
+            else:
+                return JsonResponse({"message": "Invalid credentials"}, status=401)
 
-        csrf_token = request.COOKIES.get('csrftoken', None)
-        if csrf_token is None:
-            return JsonResponse({'error': 'CSRF token not found'}, status=403)
-        
-        
-        data = request.POST.get('data', 'No data provided')
-        return JsonResponse({'message': 'Data received', 'data': data, 'csrf_token': csrf_token})
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
     
-    csrf_token = get_token(request)
-    response = JsonResponse({'message': 'CSRF token set in cookie'})
-    
-    # Set the CSRF token in the cookie
-    response.set_cookie('csrftoken', csrf_token, httponly=False, samesite='None', secure=True)  # Use secure=True in production
+    return JsonResponse({"error": "Invalid request method"}, status=405)
 
-    return response
+    
