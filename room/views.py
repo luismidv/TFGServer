@@ -27,8 +27,8 @@ def my_api_view(request):
             #else:
             #    return JsonResponse({"message": "Invalid credentials"}, status=401)
 
-        #except json.JSONDecodeError:
-        #    return JsonResponse({"error": "Invalid JSON"}, status=400)
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
     
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
