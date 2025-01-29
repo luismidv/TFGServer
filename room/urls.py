@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from . import views
-from . import 
+
 app_name = 'room'
 
 urlpatterns = [
