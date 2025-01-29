@@ -99,6 +99,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
 
 # Database
