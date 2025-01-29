@@ -17,15 +17,18 @@ def my_api_view(request):
             data = json.loads(request.body)
             email = data.get("email")
             password = data.get("password")
-            
-            # Simulate authentication logic
-            if email == "test@example.com" and password == "password123":
-                return JsonResponse({"message": "Login successful"}, status=200)
-            else:
-                return JsonResponse({"message": "Invalid credentials"}, status=401)
 
-        except json.JSONDecodeError:
-            return JsonResponse({"error": "Invalid JSON"}, status=400)
+            print(f"Received email {email} {password}")
+            
+            return JsonResponse({"message": "Data received!", "email": email, "password": password})
+            # Simulate authentication logic
+            #if email == "test@example.com" and password == "password123":
+            #    return JsonResponse({"message": "Login successful"}, status=200)
+            #else:
+            #    return JsonResponse({"message": "Invalid credentials"}, status=401)
+
+        #except json.JSONDecodeError:
+        #    return JsonResponse({"error": "Invalid JSON"}, status=400)
     
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
