@@ -119,9 +119,13 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",  # PostgreSQL backend
+        "NAME": "roomatch",               # Name of your database
+        "USER": "luismidv",               # PostgreSQL username
+        "PASSWORD": "J7QO7lVyhKk9vFZMyGSc5XYJgCT2r1hY",       # PostgreSQL password
+        "HOST": "postgresql://luismidv:J7QO7lVyhKk9vFZMyGSc5XYJgCT2r1hY@dpg-cucvp4an91rc73em2v40-a/roomatch",                        # Use "localhost" or your database server's IP
+        "PORT": "5432",                             # Default PostgreSQL port
     }
 }
 
