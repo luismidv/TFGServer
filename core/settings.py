@@ -120,7 +120,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 import dj_database_url
 DATABASES = {
      'default': dj_database_url.config(
-         default=os.environ.get('postgresql://luismidv:J7QO7lVyhKk9vFZMyGSc5XYJgCT2r1hY@dpg-cucvp4an91rc73em2v40-a.frankfurt-postgres.render.com/roomatch')
+        default=os.environ.get('postgresql://luismidv:J7QO7lVyhKk9vFZMyGSc5XYJgCT2r1hY@dpg-cucvp4an91rc73em2v40-a.frankfurt-postgres.render.com/roomatch')
      )
  }
 
