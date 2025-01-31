@@ -2,4 +2,4 @@ Django
 django-cors-headers
 djangorestframework
 psycopg2
-psicopg2 dj_database_url
+psicopg2 dj-database-url
