@@ -22,10 +22,10 @@ def my_api_view(request):
 
             print(f"Received email {email} {password}")
 
-            if email == email:
-                print("Email correcto")
+            if my_email == email:
+                respuesta = "email correcto"
             
-            return JsonResponse({"message": "Data received!", "email": email, "password": password})
+            return JsonResponse({"message": "Data received!", "email": email, "password": password, "respuesta" : respuesta})
             # Simulate authentication logic
             #if email == "test@example.com" and password == "password123":
             #    return JsonResponse({"message": "Login successful"}, status=200)
