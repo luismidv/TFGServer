@@ -19,6 +19,7 @@ def my_api_view(request):
             data = json.loads(request.body)
             email = data.get("email")
             password = data.get("password")
+            
 
             print(f"Received email {email} {password}")
 
@@ -34,6 +35,8 @@ def my_api_view(request):
 
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON"}, status=400)
+    elif request.method == "GET":
+        return JsonResponse({"GET":"Entrando en el TFGServer"})
     
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
