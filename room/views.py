@@ -4,6 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.middleware.csrf import get_token
 import json
 
+my_email = "debanien@gmail.com"
+
 def csrf_token_view(request):
     """Returns CSRF token in a response."""
     return JsonResponse({'csrfToken': get_token(request)})
@@ -19,6 +21,9 @@ def my_api_view(request):
             password = data.get("password")
 
             print(f"Received email {email} {password}")
+
+            if email == email:
+                print("Email correcto")
             
             return JsonResponse({"message": "Data received!", "email": email, "password": password})
             # Simulate authentication logic
