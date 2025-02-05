@@ -120,7 +120,10 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 import dj_database_url
 DATABASES = {
      'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL'))
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,  # Keep connection alive
+        ssl_require=True
+    )  # Enforce SSL for secure connection
  }
 
 # Password validation
