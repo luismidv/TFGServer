@@ -123,6 +123,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 import dj_database_url
 
 DATABASE_URL = os.getenv("DATABASE_URL") + "?sslmode=require"
+print(DATABASE_URL)
 DATABASES = {
     'default': dj_database_url.config(
         default=DATABASE_URL,
