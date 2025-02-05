@@ -121,10 +121,11 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 import dj_database_url
-default=os.getenv('DATABASE_URL')
+
+DATABASE_URL = os.getenv("DATABASE_URL") + "?sslmode=require"
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL'),
+        default=DATABASE_URL,
         conn_max_age=600,  # Keep connection alive
         ssl_require=True
     )  # Enforce SSL for secure connection
