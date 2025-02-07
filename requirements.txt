@@ -4,3 +4,4 @@ djangorestframework
 psycopg2
 dj-database-url
 python-dotenv
+joblib

@@ -27,11 +27,7 @@ def my_api_view(request):
                 respuesta = "email correcto"
             
             return JsonResponse({"message": "Data received!", "email": email, "password": password, "respuesta" : respuesta})
-            # Simulate authentication logic
-            #if email == "test@example.com" and password == "password123":
-            #    return JsonResponse({"message": "Login successful"}, status=200)
-            #else:
-            #    return JsonResponse({"message": "Invalid credentials"}, status=401)
+            
 
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON"}, status=400)
@@ -39,5 +35,32 @@ def my_api_view(request):
         return JsonResponse({"GET":"Entrando en el TFGServer"})
     
     return JsonResponse({"error": "Invalid request method"}, status=405)
+
+
+def algo_view(request):
+    """Handles login with CSRF token"""
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            work_time = data.get("work_time")
+            morn_night = data.get("morn_night")
+            studies = data.get("studies")
+            read = data.get("read")
+            pets = data.get("pets")
+            cooking = data.get("cooking")
+            sport = data.get("sport")
+            smoke = data.get("smoke")
+            organized = data.get("organized")
+            
+            return JsonResponse({"message": "Data received!", "email": email, "password": password, "respuesta" : respuesta})
+            
+
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
+    elif request.method == "GET":
+        return JsonResponse({"GET":"Entrando en el TFGServer"})
+    
+    return JsonResponse({"error": "Invalid request method"}, status=405)
+
 
     
