@@ -4,14 +4,13 @@ from django.views.decorators.csrf import csrf_exempt
 from django.middleware.csrf import get_token
 import json
 
-my_email = "debanien@gmail.com"
 
+@csrf_exempt
 def csrf_token_view(request):
     """Returns CSRF token in a response."""
     return JsonResponse({'csrfToken': get_token(request)})
 
-@csrf_exempt  # Remove this in production, use proper CSRF handling
-# Create your views here.
+@csrf_exempt  
 def my_api_view(request):
     """Handles login with CSRF token"""
     if request.method == "POST":
@@ -36,7 +35,7 @@ def my_api_view(request):
     
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
-
+@csrf_exempt
 def algo_view(request):
     """Handles login with CSRF token"""
     if request.method == "POST":
