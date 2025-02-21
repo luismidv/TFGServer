@@ -59,7 +59,5 @@ def algo_view(request):
     elif request.method == "GET":
         return JsonResponse({"GET":"Entrando en el TFGServer"})
     
-    return JsonResponse({"error": "Invalid request method"}, status=405)
-
 
     
