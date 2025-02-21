@@ -41,8 +41,8 @@ def algo_view(request):
     if request.method == "POST":
         try:
             data = json.loads(request.body)
-            work_time = data.get("work_time")
-            morn_night = data.get("morn_night")
+            work_time = data.get("worktime")
+            morn_night = data.get("biorythm")
             studies = data.get("studies")
             read = data.get("read")
             pets = data.get("pets")
