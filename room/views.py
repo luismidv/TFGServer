@@ -51,7 +51,7 @@ def algo_view(request):
             smoke = data.get("smoke")
             organized = data.get("organized")
             
-            return JsonResponse({"message": "Data received!", "email": email, "password": password, "respuesta" : respuesta})
+            return JsonResponse({"message": "User Data received!"})
             
 
         except json.JSONDecodeError:
