@@ -25,7 +25,7 @@ def my_api_view(request):
             if my_email == email:
                 respuesta = "email correcto"
             
-            return JsonResponse({"message": "Data received!", "email": email, "password": password, "respuesta" : respuesta})
+            return JsonResponse({"message": "User Data received!", "email": email, "password": password, "respuesta" : respuesta})
             
 
         except json.JSONDecodeError:
@@ -50,12 +50,12 @@ def algo_view(request):
             sport = data.get("sport")
             smoke = data.get("smoke")
             organized = data.get("organized")
-            
-            return JsonResponse({"message": "User Data received!"})
-            
 
+            return JsonResponse({"message": "User Data received!", "work_time" : work_time, "Morn_night" : morn_night})
+        
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON"}, status=400)
+        
     elif request.method == "GET":
         return JsonResponse({"GET":"Entrando en el TFGServer"})
     
