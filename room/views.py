@@ -10,7 +10,7 @@ def csrf_token_view(request):
     """Returns CSRF token in a response."""
     return JsonResponse({'csrfToken': get_token(request)})
 
-
+@csrf_exempt  # Remove this in production, use proper CSRF handling
 # Create your views here.
 def my_api_view(request):
     """Handles login with CSRF token"""
