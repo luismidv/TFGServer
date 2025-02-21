@@ -81,6 +81,20 @@ CSRF_TRUSTED_ORIGINS = [
     
 ]
 
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "DELETE",
+    "OPTIONS",
+]
+
+CORS_ALLOW_HEADERS = [
+    "X-CSRFToken",
+    "Content-Type",
+    "Authorization",
+]
+
 CORS_ALLOW_CREDENTIALS = True
 
 
