@@ -73,8 +73,8 @@ def change_password(user,new_password):
     u.set_password(new_password)
     u.save()
 
-def autentication(user,pass):
-    user = authenticate(username = user, password = pass)
+def autentication(user,new_pass):
+    user = authenticate(username = user, password = new_pass)
 
     if user is not None:
         result = "Login correct"
