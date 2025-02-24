@@ -26,7 +26,7 @@ def my_api_view(request):
             type = data.get("type")
 
             if type == "Register":
-                create_user(username,password)
+                create_user(username,email,password)
                 next_call = "Login function"
 
             else:
