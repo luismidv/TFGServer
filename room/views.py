@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.middleware.csrf import get_token
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+
+
 import json
 my_email = "debanien@gmail.com"
 
@@ -22,10 +26,9 @@ def my_api_view(request):
 
             print(f"Received email {email} {password}")
 
-            if my_email == email:
-                respuesta = "email correcto"
-            
-            return JsonResponse({"message": "User Data received!", "email": email, "password": password, "respuesta" : respuesta})
+
+            result = autentication(email,password)
+            return JsonResponse({"message": "User Data received!", "Resultado": result })
             
 
         except json.JSONDecodeError:
@@ -61,3 +64,34 @@ def algo_view(request):
     
 
     
+
+def create_user(variable1, variable2, variable3):
+    user = User.objects.create_user(variable1, variable2 ,variable3)
+
+def change_password(user,new_password):
+    u = User.objects.get(username=user)
+    u.set_password(new_password)
+    u.save()
+
+def autentication(user,pass):
+    user = authenticate(username = user, password = pass)
+
+    if user is not None:
+        result = "Login correct"
+        return result
+    else:
+        result = "Login incorrect"
+        return result
+
+def log_user(request):
+    username = request.POST["username"]
+    password = request.POST["password"]
+    user = authenticate(request, username,password)
+
+    if user is not None:
+        login(request,user)
+    else:
+        print("Login error")
+
+def log_out(request):
+    logout(request)
