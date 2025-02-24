@@ -20,6 +20,7 @@ def my_api_view(request):
     if request.method == "POST":
         try:
             data = json.loads(request.body)
+            username = data.get("username")
             email = data.get("email")
             password = data.get("password")
             
@@ -27,8 +28,8 @@ def my_api_view(request):
             print(f"Received email {email} {password}")
 
 
-            result = autentication(email,password)
-            return JsonResponse({"message": "User Data received!", "Resultado": result })
+            result = authenticate_user(email,password)
+            return JsonResponse({"message": "User Data received!", "Resultado": result, "Username": username, "Email": email, "Password": password})
             
 
         except json.JSONDecodeError:
@@ -65,23 +66,18 @@ def algo_view(request):
 
     
 
-def create_user(variable1, variable2, variable3):
-    user = User.objects.create_user(variable1, variable2 ,variable3)
+def create_user(username , password):
+    user = User.objects.create_user(username , password)
 
 def change_password(user,new_password):
     u = User.objects.get(username=user)
     u.set_password(new_password)
     u.save()
 
-def autentication(user,new_pass):
-    user = authenticate(username = user, password = new_pass)
+def authenticate_user(user_name,new_pass):
+    user = authenticate(username = user_name, password = new_pass)
 
-    if user is not None:
-        result = "Login correct"
-        return result
-    else:
-        result = "Login incorrect"
-        return result
+    return "Login correct" if user is not None else "Login incorrect"
 
 def log_user(request):
     username = request.POST["username"]
