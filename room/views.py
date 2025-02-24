@@ -23,13 +23,17 @@ def my_api_view(request):
             username = data.get("username")
             email = data.get("email")
             password = data.get("password")
-            
+            type = data.get("type")
 
-            print(f"Received email {email} {password}")
+            if type == "Register":
+                next_call = "Register function"
+            else:
+                next_call = "Login function"
+            
 
 
             result = authenticate_user(email,password)
-            return JsonResponse({"message": "User Data received!", "Resultado": result, "Username": username, "Email": email, "Password": password})
+            return JsonResponse({"message": "User Data received!", "Resultado": result, "Username": username, "Email": email, "Password": password, "Next_call": next_call})
             
 
         except json.JSONDecodeError:
