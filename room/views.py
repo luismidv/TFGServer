@@ -26,7 +26,9 @@ def my_api_view(request):
             type = data.get("type")
 
             if type == "Register":
-                next_call = "Register function"
+                create_user(username,password)
+                next_call = "Login function"
+
             else:
                 next_call = "Login function"
             
@@ -70,8 +72,8 @@ def algo_view(request):
 
     
 
-def create_user(username , password):
-    user = User.objects.create_user(username , password)
+def create_user(username, email, password):
+    user = User.objects.create_user(username, email, password)
 
 def change_password(user,new_password):
     u = User.objects.get(username=user)
