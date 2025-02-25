@@ -26,16 +26,15 @@ def my_api_view(request):
             type = data.get("type")
 
             if type == "Register":
-                create_user(username,email,password)
-                next_call = "Login function"
-
+                user = create_user(username,email,password)
+                if user is not None:
+                    connection_bool = authenticate_user(email,password)
+                else:
+                    return False
             else:
-                next_call = "Login function"
+                connection_bool = authenticate_user(email,password)
             
-
-
-            result = authenticate_user(email,password)
-            return JsonResponse({"message": "User Data received!", "Resultado": result, "Username": username, "Email": email, "Password": password, "Next_call": next_call})
+            return JsonResponse({"message": "User Data received!", "Resultado": connection_bool})
             
 
         except json.JSONDecodeError:
@@ -73,7 +72,12 @@ def algo_view(request):
     
 
 def create_user(username, email, password):
-    user = User.objects.create_user(username, email, password)
+    try:
+        user = User.objects.create_user(username, email, password)
+        return user
+    except:
+        return user
+
 
 def change_password(user,new_password):
     u = User.objects.get(username=user)
@@ -82,18 +86,19 @@ def change_password(user,new_password):
 
 def authenticate_user(user_name,new_pass):
     user = authenticate(username = user_name, password = new_pass)
+    return True if user is not None else False
 
-    return "Login correct" if user is not None else "Login incorrect"
-
-def log_user(request):
-    username = request.POST["username"]
-    password = request.POST["password"]
+def log_user(request, username,password):
     user = authenticate(request, username,password)
-
+    
     if user is not None:
         login(request,user)
+        return True;
     else:
         print("Login error")
+        return False;
+
+    
 
 def log_out(request):
     logout(request)
