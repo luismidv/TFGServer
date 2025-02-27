@@ -72,13 +72,10 @@ def algo_view(request):
     
 
 def create_user(username, email, password):
-    try:
-        user = User.objects.create_user(username, email, password)
-        return user
-    except:
-        return user
-
-
+    
+    user = User.objects.create_user(username, email, password)
+    return user
+   
 def change_password(user,new_password):
     u = User.objects.get(username=user)
     u.set_password(new_password)
@@ -93,10 +90,10 @@ def log_user(request, username,password):
     
     if user is not None:
         login(request,user)
-        return True;
+        return True
     else:
         print("Login error")
-        return False;
+        return False
 
     
 
