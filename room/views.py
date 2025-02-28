@@ -4,10 +4,22 @@ from django.views.decorators.csrf import csrf_exempt
 from django.middleware.csrf import get_token
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 import json
 my_email = "debanien@gmail.com"
+
+class UserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self,request):
+        return Response({
+            "id": request.user.id,
+            "username": request.user.username,
+            "email": request.user.email, 
+        })
 
 @csrf_exempt
 def csrf_token_view(request):
@@ -68,9 +80,6 @@ def algo_view(request):
     elif request.method == "GET":
         return JsonResponse({"GET":"Entrando en el TFGServer"})
     
-
-    
-
 def create_user(username, email, password):
     
     user = User.objects.create_user(username, email, password)
@@ -95,7 +104,6 @@ def log_user(request, username,password):
         print("Login error")
         return False
 
-    
-
 def log_out(request):
     logout(request)
+
