@@ -36,13 +36,6 @@ class k_means_algo():
         new_row_dataframe = pd.DataFrame([new_row_data], columns=person)
         self.result_data = pd.concat([original_dataframe, new_row_dataframe]).set_index("id")
         
-        
-
-        
-        
-        
-
-
     def data_checking(self,dataframe):
         for col in dataframe.columns:
             if dataframe[col].isnull().sum() > 0:
