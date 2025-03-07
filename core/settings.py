@@ -134,15 +134,16 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 import dj_database_url
 
-DATABASE_URL = os.getenv("DATABASE_URL") + "?sslmode=require"
-print(DATABASE_URL)
 DATABASES = {
-    'default': dj_database_url.config(
-        default=DATABASE_URL,
-        conn_max_age=600,  # Keep connection alive
-        ssl_require=True
-    )  # Enforce SSL for secure connection
- }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'koyebdb',
+        'USER': 'koyeb-adm',
+        'PASSWORD': 'npg_PlTL6MNce8xt',
+        'HOST': 'ep-jolly-math-a2gyj2sb.eu-central-1.pg.koyeb.app',
+        'OPTIONS': {'sslmode': 'require'},
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
