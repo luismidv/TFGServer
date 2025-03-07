@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view, permission_classes
 
 
 
@@ -59,8 +60,10 @@ def my_api_view(request):
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
 @csrf_exempt
+@api_view(['POST'])  # Change to GET if needed
+@permission_classes([IsAuthenticated])  # Ensures JWT authentication
 def algo_view(request):
-    """Handles login with CSRF token"""
+    
     if request.method == "POST":
         try:
             #GET THE USER FROM THE REQUEST
