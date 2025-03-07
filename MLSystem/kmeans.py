@@ -18,8 +18,6 @@ class k_means_algo():
     def data_preparing(self,person):
        
         #DATAFRAME WITH DATA
-
-        
         new_dataframe = pd.DataFrame(columns=person)
         print(new_dataframe.columns)
 
@@ -31,8 +29,6 @@ class k_means_algo():
         
         new_row_data = [last_id, "John", "Doe", 30, "john.doe@example.com", "Morning", "Night", 
                 "Bachelor", "Yes", "Yes", "Yes", "No", "Yes"]
-
-        
         new_row_dataframe = pd.DataFrame([new_row_data], columns=person)
         self.result_data = pd.concat([original_dataframe, new_row_dataframe]).set_index("id")
         

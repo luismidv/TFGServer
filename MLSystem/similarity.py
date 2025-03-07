@@ -1,14 +1,12 @@
 import numpy as np
-import datasetgenerator as dg
 from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 
 def data_preparing():
-    dataframe = pd.read_csv('./MLSystem/data/users_dataframe.csv')
-    print(dataframe.describe())
+    original_dataframe = pd.read_csv('./data/users_dataframe.csv')
     columns = ['Age', 'Worktimes', 'Schedules', 'Studies level', 'Pets', 'Cooking', 'Sport', 'Smoking', 'Organized']
-    dataframe = dataframe[columns]
-    return dataframe
+    dataframe = original_dataframe[columns]
+    return dataframe, original_dataframe
 
 def data_checking(dataframe):
     for col in dataframe.columns:

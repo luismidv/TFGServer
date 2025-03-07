@@ -61,18 +61,9 @@ def algo_view(request):
     """Handles login with CSRF token"""
     if request.method == "POST":
         try:
-            data = json.loads(request.body)
-            work_time = data.get("worktime")
-            morn_night = data.get("biorythm")
-            studies = data.get("studies")
-            read = data.get("read")
-            pets = data.get("pets")
-            cooking = data.get("cooking")
-            sport = data.get("sport")
-            smoke = data.get("smoke")
-            organized = data.get("organized")
+            
 
-            return JsonResponse({"message": "User Data received!", "work_time" : work_time, "Morn_night" : morn_night})
+            return JsonResponse({"message": "User Token received!"})
         
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON"}, status=400)
@@ -81,10 +72,9 @@ def algo_view(request):
         return JsonResponse({"GET":"Entrando en el TFGServer"})
     
 def create_user(username, email, password):
-    
     user = User.objects.create_user(username, email, password)
     return user
-   
+
 def change_password(user,new_password):
     u = User.objects.get(username=user)
     u.set_password(new_password)
