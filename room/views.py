@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 
+
 import json
 my_email = "debanien@gmail.com"
 
@@ -64,9 +65,11 @@ def algo_view(request):
         try:
             #GET THE USER FROM THE REQUEST
             user = request.user
-
             #GET THE TENANT ASSOCIATED WITH THE USER
             user_data = user.id
+
+            if user_data is None:
+                user_data = "Not found"
                 
             return JsonResponse({"message": "User identified!" , "user": user_data})
         
