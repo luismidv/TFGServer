@@ -60,7 +60,7 @@ def my_api_view(request):
     
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
-@csrf_exempt
+
 @api_view(['POST'])  # Change to GET if needed
 @permission_classes([IsAuthenticated])  # Ensures JWT authentication
 def algo_view(request):
@@ -76,7 +76,7 @@ def algo_view(request):
                 tenant_list = "Not found"
             else:
                 tenant_list = rv.algo_start(user_data)
-                
+
             return JsonResponse({"message": "User identified!" , "user": tenant_list})
         
         except json.JSONDecodeError:
