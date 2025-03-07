@@ -9,7 +9,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view, permission_classes
 from MLSystem import resultview as rv
+import logging
 
+logger = logging.getLogger(__name__)
 
 
 import json
@@ -80,8 +82,9 @@ def algo_view(request):
 
             return JsonResponse({"message": "User identified!" , "user": tenant_list})
         
-        except json.JSONDecodeError:
-            return JsonResponse({"error": "Invalid JSON"}, status=400)
+        except Exception as e:
+            logger.error(f"Error in algo_view {str(e)}")
+            return JsonResponse({"error procesing  request view:"}, status=400)
         
     elif request.method == "GET":
         return JsonResponse({"GET":"Entrando en el TFGServer"})

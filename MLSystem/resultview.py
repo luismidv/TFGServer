@@ -1,6 +1,5 @@
 import pandas as pd
 from MLSystem import similarity as sm
-import matplotlib.pyplot as plt
 
 def tenant_visualization(similarity_matrix, requested_tenants):
     #TODO VIEW COMPATIBILITY BETWEEN REQUESTED TENANTS
