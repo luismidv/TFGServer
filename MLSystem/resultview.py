@@ -52,10 +52,12 @@ def tenant_inference(similarity_matrix, requested_tenants,dataframe):
         #print(f"I will present the names of the tenants with the higher similarity: \n {tenant[0]['Names']}")
     return tenant_list
 
+def algo_start(id):
 
-#dataframe, original_dataframe = sm.data_preparing()
-#sm.data_checking(dataframe)
-#similarity_matrix = sm.encoder_matrix(dataframe, min_range = 0, max_range=100)
-#tenant_list = tenant_inference(similarity_matrix, 4,original_dataframe)
-#print(tenant_list)
-#tenant_visualization(similarity_matrix, [20,40,50,18,15])
+    dataframe, original_dataframe = sm.data_preparing()
+    #sm.data_checking(dataframe)
+    similarity_matrix = sm.encoder_matrix(dataframe, min_range = 0, max_range=100)
+    tenant_list = tenant_inference(similarity_matrix, id,original_dataframe)
+    return tenant_list
+
+    #tenant_visualization(similarity_matrix, [20,40,50,18,15])

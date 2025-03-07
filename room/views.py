@@ -8,6 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view, permission_classes
+from MLSystem import resultview as rv
 
 
 
@@ -73,8 +74,9 @@ def algo_view(request):
 
             if user_data is None:
                 user_data = "Not found"
-                
-            return JsonResponse({"message": "User identified!" , "user": user_data})
+            else:
+                tenant_list = rv.algo_start(user_data)
+            return JsonResponse({"message": "User identified!" , "user": tenant_list})
         
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON"}, status=400)
