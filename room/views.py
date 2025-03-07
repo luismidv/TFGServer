@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from .models import Tenants
 
 import json
 my_email = "debanien@gmail.com"
@@ -61,9 +62,14 @@ def algo_view(request):
     """Handles login with CSRF token"""
     if request.method == "POST":
         try:
-            
+            #GET THE USER FROM THE REQUEST
+            user = request.user
 
-            return JsonResponse({"message": "User Token received!"})
+            #GET THE TENANT ASSOCIATED WITH THE USER
+            tenant = Tenants.objects.get(id =user.id)
+            user_data = user.id
+                
+            return JsonResponse({"message": "User identified!" , "user": user_data})
         
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON"}, status=400)
