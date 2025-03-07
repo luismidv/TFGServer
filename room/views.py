@@ -75,7 +75,8 @@ def algo_view(request):
             if user_data is None:
                 tenant_list = "Not found"
             else:
-                tenant_list = rv.algo_start(user_data)
+                #tenant_list = rv.algo_start(user_data)
+                print("user")
 
             return JsonResponse({"message": "User identified!" , "user": tenant_list})
         

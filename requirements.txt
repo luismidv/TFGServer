@@ -10,6 +10,5 @@ djangorestframework-simplejwt
 pandas
 numpy
 scikit-learn
-matplotlib
 joblib
 scipy
