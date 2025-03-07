@@ -3,7 +3,7 @@ from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 
 def data_preparing():
-    original_dataframe = pd.read_csv('./data/users_dataframe.csv')
+    original_dataframe = pd.read_csv('./MLSystem/data/users_dataframe.csv')
     columns = ['Age', 'Worktimes', 'Schedules', 'Studies level', 'Pets', 'Cooking', 'Sport', 'Smoking', 'Organized']
     dataframe = original_dataframe[columns]
     return dataframe, original_dataframe
