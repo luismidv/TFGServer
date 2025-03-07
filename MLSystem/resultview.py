@@ -1,5 +1,5 @@
 import pandas as pd
-import similarity as sm
+from MLSystem import similarity as sm
 import matplotlib.pyplot as plt
 
 def tenant_visualization(similarity_matrix, requested_tenants):
