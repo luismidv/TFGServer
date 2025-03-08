@@ -79,7 +79,7 @@ def algo_view(request):
                 tenant_list = "Not found"
             else:
                 url = "https://luismidv-mlsystemtfg.hf.space/predict/"
-                params = {"id": user_data}
+                params = {"id": str(user_data)}
                 response = requests.post(url, params)
                 print(response)
                 
