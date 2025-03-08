@@ -78,7 +78,11 @@ def algo_view(request):
             if user_data is None:
                 tenant_list = "Not found"
             else:
-                print("Will define")
+                url = "https://luismidv-mlsystemtfg.hf.space/predict/"
+                params = {"id": user_data}
+                response = requests.post(url, params)
+                print(response)
+                
                 
 
             return JsonResponse({"message": "User identified!" , "user": user_data})
