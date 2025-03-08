@@ -85,7 +85,10 @@ def algo_view(request):
                 response = requests.post(url, params = params)
                 if response.status_code == 200:
                     response_data = response.json()
-                    return JsonResponse({"message": "User identified!" , "user": response_data})
+                    if response_data == None:
+                        response_data = "Not found"
+
+                    return JsonResponse({"message": response_data})
             
         
         except Exception as e:
