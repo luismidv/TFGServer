@@ -10,6 +10,7 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view, permission_classes
 from MLSystem import resultview as rv
 import logging
+import requests
 
 logger = logging.getLogger(__name__)
 
@@ -77,10 +78,10 @@ def algo_view(request):
             if user_data is None:
                 tenant_list = "Not found"
             else:
-                tenant_list = rv.algo_start(user_data)
-                print("user")
+                print("Will define")
+                
 
-            return JsonResponse({"message": "User identified!" , "user": tenant_list})
+            return JsonResponse({"message": "User identified!" , "user": user_data})
         
         except Exception as e:
             logger.error(f"Error in algo_view {str(e)}")
