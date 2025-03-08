@@ -80,7 +80,7 @@ def algo_view(request):
             else:
                 url = "https://luismidv-mlsystemtfg.hf.space/predict/"
                 params = {"id": str(user_data)}
-                response = requests.post(url, params)
+                response = requests.post(url, params = params)
                 print(response)
                 
                 
