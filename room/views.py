@@ -81,11 +81,9 @@ def algo_view(request):
                 url = "https://luismidv-mlsystemtfg.hf.space/predict/"
                 params = {"id": str(user_data)}
                 response = requests.post(url, params = params)
-                print(response)
                 
                 
-
-            return JsonResponse({"message": "User identified!" , "user": user_data})
+            return JsonResponse({"message": "User identified!" , "user": response})
         
         except Exception as e:
             logger.error(f"Error in algo_view {str(e)}")
