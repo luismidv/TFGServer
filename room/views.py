@@ -80,7 +80,7 @@ def algo_view(request):
             response = requests.post(url, params = params)
             if response.status_code == 200:
                 response_data = response.json()
-                return JsonResponse(response_data, indent = 4)
+                return JsonResponse(response_data)
             else:
                 return JsonResponse({"Error" : "External API error", "details": response.text})
         except Exception as e:
