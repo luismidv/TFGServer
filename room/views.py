@@ -75,20 +75,21 @@ def algo_view(request):
             #GET THE TENANT ASSOCIATED WITH THE USER
             user_data = user.id
 
-            if user_data is None:
-                tenant_list = "Not found"
-                return tenant_list
             
+            url = "https://luismidv-mlsystemtfg.hf.space/predict/"
+            params = {"id": str(user_data)}
+            response = requests.post(url, params = params)
+            if response.status_code == 200:
+                response_data = response.json()
+                if response_data == None:
+                    response_data = "Not found"
+                response_data = {
+                    "Names": [entry["Names"] for entry in data.values()]
+                }
+                return JsonResponse(json.dumps(response_data, indent = 4))
             else:
-                url = "https://luismidv-mlsystemtfg.hf.space/predict/"
-                params = {"id": str(user_data)}
-                response = requests.post(url, params = params)
-                if response.status_code == 200:
-                    response_data = response.json()
-                    if response_data == None:
-                        response_data = "Not found"
-
-                    return JsonResponse({"message": response_data})
+                return JsonResponse({"Error" : "External API error", "details": response.text})
+            
             
         
         except Exception as e:
