@@ -74,19 +74,15 @@ def algo_view(request):
             user = request.user
             #GET THE TENANT ASSOCIATED WITH THE USER
             user_data = user.id
-
             
             url = "https://luismidv-mlsystemtfg.hf.space/predict/"
             params = {"id": str(user_data)}
             response = requests.post(url, params = params)
             if response.status_code == 200:
                 response_data = response.json()
-                return JsonResponse(json.dumps(response_data, indent = 4))
+                return JsonResponse(response_data, indent = 4)
             else:
                 return JsonResponse({"Error" : "External API error", "details": response.text})
-            
-            
-        
         except Exception as e:
             logger.error(f"Error in algo_view {str(e)}")
             return JsonResponse({"error procesing  request view:"}, status=400)
