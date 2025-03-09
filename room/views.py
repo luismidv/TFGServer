@@ -81,11 +81,6 @@ def algo_view(request):
             response = requests.post(url, params = params)
             if response.status_code == 200:
                 response_data = response.json()
-                if response_data == None:
-                    response_data = "Not found"
-                response_data = {
-                    "Names": [entry["Names"] for entry in data.values()]
-                }
                 return JsonResponse(json.dumps(response_data, indent = 4))
             else:
                 return JsonResponse({"Error" : "External API error", "details": response.text})
