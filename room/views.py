@@ -99,9 +99,11 @@ def algo_view(request):
         return JsonResponse({"GET":"Entrando en el TFGServer"})
 
 @api_view(['POST'])  # Change to GET if needed
-@permission_classes([IsAuthenticated])  # Ensures JWT authentication    
+@permission_classes([IsAuthenticated])  # Ensures JWT authentication
+@authentication_classes([JWTAuthentication])  # Use JWT authentication
+
 def tenant_features(request):
-    if request.method == "POST":
+    if request.METHOD == "POST":
         try:
             user = request.user
             # tenants = tenants.objects.create(
