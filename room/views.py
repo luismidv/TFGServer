@@ -14,6 +14,7 @@ import requests
 from django.conf import settings
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
+from .models import tenants
 
 
 logger = logging.getLogger(__name__)
@@ -100,21 +101,23 @@ def tenant_features(request):
     if request.METHOD == "POST":
         try:
             user = request.user
-            data = json.loads(request.body)
-            name = data.get("names")
-            surnames = data.get("surnames")
-            age = data.get("age")
-            email = data.get("email")
-            worktime=data.get('worktime'),
-            biorythm=data.get('biorythm'),
-            studies=data.get('studies'),
-            read=data.get('read'),
-            pets=data.get('pets'),
-            cook=data.get('cook'),
-            sport=data.get('sport'),
-            smoke=data.get('smoke'),
-            organized=data.get('organized'),
-        
+            tenants = tenants.objects.create(
+                
+                data = json.loads(request.body)
+                name = data.get("names")
+                surnames = data.get("surnames")
+                age = data.get("age")
+                email = data.get("email")
+                worktime=data.get('worktime'),
+                biorythm=data.get('biorythm'),
+                studies=data.get('studies'),
+                read=data.get('read'),
+                pets=data.get('pets'),
+                cook=data.get('cook'),
+                sport=data.get('sport'),
+                smoke=data.get('smoke'),
+                organized=data.get('organized'),
+            )
             return JsonResponse({"message": "Data recevied succesfully"}, status=status.HTTP_200_OK)
         
         except Exception as error:
