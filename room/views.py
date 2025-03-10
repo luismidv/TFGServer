@@ -101,23 +101,23 @@ def tenant_features(request):
     if request.METHOD == "POST":
         try:
             user = request.user
-            tenants = tenants.objects.create(
+            # tenants = tenants.objects.create(
                 
-                data = json.loads(request.body)
-                name = data.get("names")
-                surnames = data.get("surnames")
-                age = data.get("age")
-                email = data.get("email")
-                worktime=data.get('worktime'),
-                biorythm=data.get('biorythm'),
-                studies=data.get('studies'),
-                read=data.get('read'),
-                pets=data.get('pets'),
-                cook=data.get('cook'),
-                sport=data.get('sport'),
-                smoke=data.get('smoke'),
-                organized=data.get('organized'),
-            )
+            #     data = json.loads(request.body)
+            #     name = data.get("names")
+            #     surnames = data.get("surnames")
+            #     age = data.get("age")
+            #     email = data.get("email")
+            #     worktime=data.get('worktime'),
+            #     biorythm=data.get('biorythm'),
+            #     studies=data.get('studies'),
+            #     read=data.get('read'),
+            #     pets=data.get('pets'),
+            #     cook=data.get('cook'),
+            #     sport=data.get('sport'),
+            #     smoke=data.get('smoke'),
+            #     organized=data.get('organized'),
+            # )
             return JsonResponse({"message": "Data recevied succesfully"}, status=status.HTTP_200_OK)
         
         except Exception as error:
