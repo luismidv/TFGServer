@@ -106,7 +106,7 @@ def algo_view(request):
 @permission_classes([IsAuthenticated])  # Ensures JWT authentication
 def tenant_features(request):
     print("Entering tenant features")
-    if request.METHOD == "POST":
+    if request.method == "POST":
         try:
             user = request.user
             # tenants = tenants.objects.create(
