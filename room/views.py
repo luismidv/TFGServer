@@ -65,7 +65,11 @@ def authenticate_user(username,new_pass):
     tokens = tokens.json()
     user = requests.get(f"https://tfgserver.onrender.com/api/user/", headers={"Authorization": f"Bearer {tokens['access']}"})
     if user.status_code == 200:
-        return tokens,user.json()
+        user = user.json()
+        return tokens,user
+    else:
+        return None, None
+    
 
 def create_user(username, email, password):
     user = User.objects.create_user(username, email, password)
@@ -100,8 +104,6 @@ def algo_view(request):
 
 @api_view(['POST'])  # Change to GET if needed
 @permission_classes([IsAuthenticated])  # Ensures JWT authentication
-@authentication_classes([JWTAuthentication])  # Use JWT authentication
-
 def tenant_features(request):
     if request.METHOD == "POST":
         try:
