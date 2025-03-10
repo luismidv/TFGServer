@@ -16,6 +16,7 @@ from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import tenants
 from rest_framework_simplejwt.authentication import JWTAuthentication
+import json
 
 
 
@@ -124,7 +125,7 @@ def tenant_features(request):
                 sport=data.get('sport'),
                 smoke=data.get('smoke'),
                 organized=data.get('organized'),
-             )
+            )
             return JsonResponse({"message": "Data recevied succesfully"}, status=status.HTTP_200_OK)
         
         except Exception as error:
