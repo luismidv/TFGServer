@@ -76,7 +76,6 @@ def create_user(username, email, password):
     return user
 
 @api_view(['POST'])  # Change to GET if needed
-@authentication_classes([JWTAuthentication])  # Use JWT authentication
 @permission_classes([IsAuthenticated])  # Ensures JWT authentication
 def algo_view(request):
     
