@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes,authentication_classes
 from MLSystem import resultview as rv
 import logging
 import requests
@@ -15,6 +15,8 @@ from django.conf import settings
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import tenants
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
 
 
 logger = logging.getLogger(__name__)
@@ -70,6 +72,7 @@ def create_user(username, email, password):
     return user
 
 @api_view(['POST'])  # Change to GET if needed
+@authentication_classes([JWTAuthentication])  # Use JWT authentication
 @permission_classes([IsAuthenticated])  # Ensures JWT authentication
 def algo_view(request):
     
