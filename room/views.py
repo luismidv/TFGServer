@@ -58,9 +58,9 @@ def my_api_view(request):
             return JsonResponse({"error": "Invalid JSON"}, status=400)
 
 def authenticate_user(username,new_pass):
-    tokens = requests.post(f"{settings.BASE_URL}/api/token/", data={"username": username, "password": new_pass})
+    tokens = requests.post(f"https://tfgserver.onrender.com/api/token/", data={"username": username, "password": new_pass})
     tokens = tokens.json()
-    user = requests.get(f"{settings.BASE_URL}/api/user/", headers={"Authorization": f"Bearer {tokens['access']}"})
+    user = requests.get(f"https://tfgserver.onrender.com/api/user/", headers={"Authorization": f"Bearer {tokens['access']}"})
     if user.status_code == 200:
         return tokens,user.json()
 
