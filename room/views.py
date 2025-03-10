@@ -93,7 +93,34 @@ def algo_view(request):
         
     elif request.method == "GET":
         return JsonResponse({"GET":"Entrando en el TFGServer"})
-    
+
+@api_view(['POST'])  # Change to GET if needed
+@permission_classes([IsAuthenticated])  # Ensures JWT authentication    
+def tenant_features(request):
+    if request.METHOD == "POST":
+        try:
+            user = request.user
+            data = json.loads(request.body)
+            name = data.get("names")
+            surnames = data.get("surnames")
+            age = data.get("age")
+            email = data.get("email")
+            worktime=data.get('worktime'),
+            biorythm=data.get('biorythm'),
+            studies=data.get('studies'),
+            read=data.get('read'),
+            pets=data.get('pets'),
+            cook=data.get('cook'),
+            sport=data.get('sport'),
+            smoke=data.get('smoke'),
+            organized=data.get('organized'),
+        
+            return JsonResponse({"message": "Data recevied succesfully"}, status=status.HTTP_200_OK)
+        
+        except Exception as error:
+            print(error)
+
+
 
 
 def change_password(user,new_password):
