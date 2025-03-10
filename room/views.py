@@ -11,10 +11,12 @@ from rest_framework.decorators import api_view, permission_classes
 from MLSystem import resultview as rv
 import logging
 import requests
+from django.conf import settings
+from rest_framework import status
+from rest_framework_simplejwt.tokens import RefreshToken
+
 
 logger = logging.getLogger(__name__)
-
-
 import json
 my_email = "debanien@gmail.com"
 
@@ -47,22 +49,24 @@ def my_api_view(request):
             if type == "Register":
                 user = create_user(username,email,password)
                 if user is not None:
-                    connection_bool = authenticate_user(email,password)
+                    tokens,user_data = authenticate_user(username,password)
+                    if tokens:
+                        return JsonResponse({"message" : "User registered procceed to logg in", "tokens": tokens, "user": user_data })
                 else:
                     return False
-            else:
-                connection_bool = authenticate_user(email,password)
-            
-            return JsonResponse({"message": "User Data received!", "Resultado": connection_bool})
-            
-
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON"}, status=400)
-    elif request.method == "GET":
-        return JsonResponse({"GET":"Entrando en el TFGServer"})
-    
-    return JsonResponse({"error": "Invalid request method"}, status=405)
 
+def authenticate_user(username,new_pass):
+    tokens = requests.post(f"{settings.BASE_URL}/api/token/", data={"username": username, "password": new_pass})
+    tokens = tokens.json()
+    user = requests.get(f"{settings.BASE_URL}/api/user/", headers={"Authorization": f"Bearer {tokens['access']}"})
+    if user.status_code == 200:
+        return tokens,user.json()
+
+def create_user(username, email, password):
+    user = User.objects.create_user(username, email, password)
+    return user
 
 @api_view(['POST'])  # Change to GET if needed
 @permission_classes([IsAuthenticated])  # Ensures JWT authentication
@@ -90,29 +94,12 @@ def algo_view(request):
     elif request.method == "GET":
         return JsonResponse({"GET":"Entrando en el TFGServer"})
     
-def create_user(username, email, password):
-    user = User.objects.create_user(username, email, password)
-    return user
+
 
 def change_password(user,new_password):
     u = User.objects.get(username=user)
     u.set_password(new_password)
     u.save()
 
-def authenticate_user(user_name,new_pass):
-    user = authenticate(username = user_name, password = new_pass)
-    return True if user is not None else False
 
-def log_user(request, username,password):
-    user = authenticate(request, username,password)
-    
-    if user is not None:
-        login(request,user)
-        return True
-    else:
-        print("Login error")
-        return False
-
-def log_out(request):
-    logout(request)
 
