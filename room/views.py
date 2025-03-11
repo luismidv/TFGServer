@@ -111,7 +111,7 @@ def tenant_features(request):
             user = request.user
             data = json.loads(request.body)
             tenants = tenants.objects.create(
-                
+
                 name = data.get("names"),
                 surnames = data.get("surnames"),
                 age = data.get("age"),
@@ -129,7 +129,7 @@ def tenant_features(request):
             return JsonResponse({"message": "Data recevied succesfully"}, status=status.HTTP_200_OK)
         
         except Exception as error:
-            print(error)
+            return JsonResponse({"message": "Endpoint error", "Error" : error})
 
 
 
