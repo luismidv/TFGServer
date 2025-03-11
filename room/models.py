@@ -37,7 +37,7 @@ class Tenants(models.Model):
     studies_level = models.TextField(max_length=100)
     pets = models.TextField(max_length=150)
     cookies = models.TextField(max_length=100)
-    Sport = models.TextField(max_length=100)
+    sport = models.TextField(max_length=100)
     smoking = models.TextField(max_length=100)
     organized = models.TextField(max_length=150)
 
