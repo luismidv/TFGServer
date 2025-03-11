@@ -109,13 +109,13 @@ def tenant_features(request):
     if request.method == "POST":
         try:
             user = request.user
+            data = json.loads(request.body)
             tenants = tenants.objects.create(
                 
-                data = json.loads(request.body)
-                name = data.get("names")
-                surnames = data.get("surnames")
-                age = data.get("age")
-                email = data.get("email")
+                name = data.get("names"),
+                surnames = data.get("surnames"),
+                age = data.get("age"),
+                email = data.get("email"),
                 worktime=data.get('worktime'),
                 biorythm=data.get('biorythm'),
                 studies=data.get('studies'),
