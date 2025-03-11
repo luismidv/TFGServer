@@ -14,7 +14,7 @@ import requests
 from django.conf import settings
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import tenants
+from .models import Tenants
 from rest_framework_simplejwt.authentication import JWTAuthentication
 import json
 
@@ -129,7 +129,7 @@ def tenant_features(request):
             return JsonResponse({"message": "Data recevied succesfully"}, status=status.HTTP_200_OK)
         
         except Exception as error:
-            return JsonResponse({"message": "Endpoint error", "Error" : error})
+            return JsonResponse({"message": str(error)}, status = status.HTTP_400_BAD_REQUEST)
 
 
 

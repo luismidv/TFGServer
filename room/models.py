@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 #MODEL OF THE LESSOR TABLE IN THE KOYEB DB
-class lessor(models.Model):
+class Lessor(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.TextField(max_length=255)
     telephone = models.TextField(max_length=9)
@@ -14,7 +14,7 @@ class lessor(models.Model):
         return self.name
 
 #MODEL OF THE LESSOR TABLE IN THE KOYEB DB
-class rooms(models.Model):
+class Rooms(models.Model):
     id = models.AutoField(primary_key=True)
     direction = models.TextField(max_length=255)
     city = models.TextField(max_length=50)
@@ -26,17 +26,20 @@ class rooms(models.Model):
     description = models.TextField(max_length=150)
 
 #MODEL OF THE TENANTS TABLE IN THE KOYEB DB
-class tenants(models.Model):
+class Tenants(models.Model):
     id = models.AutoField(primary_key=True)
-    Names = models.TextField(max_length=255)
-    Surnames = models.TextField(max_length=50)
-    Age = models.TextField(max_length=20)
-    Email = models.TextField(max_length=100)
-    Worktimes = models.TextField(max_length=100)
-    Schedules = models.TextField(max_length=100)
-    Studies_level = models.TextField(max_length=100)
-    Pets = models.TextField(max_length=150)
-    Cookies = models.TextField(max_length=100)
+    names = models.TextField(max_length=255)
+    surnames = models.TextField(max_length=50)
+    age = models.TextField(max_length=20)
+    email = models.TextField(max_length=100)
+    worktimes = models.TextField(max_length=100)
+    schedules = models.TextField(max_length=100)
+    studies_level = models.TextField(max_length=100)
+    pets = models.TextField(max_length=150)
+    cookies = models.TextField(max_length=100)
     Sport = models.TextField(max_length=100)
-    Smoking = models.TextField(max_length=100)
-    Organized = models.TextField(max_length=150)
+    smoking = models.TextField(max_length=100)
+    organized = models.TextField(max_length=150)
+
+    def __str__(self):
+        return f"{self.names} {self.surnames}"
