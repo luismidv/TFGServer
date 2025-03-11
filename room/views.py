@@ -131,6 +131,7 @@ def tenant_features(request):
         except Exception as error:
             return JsonResponse({"message": str(error)}, status = status.HTTP_400_BAD_REQUEST)
         
+@csrf_exempt 
 def lessor_room(request):
     print("Entering lessor room api")
     if request.method == "POST":
