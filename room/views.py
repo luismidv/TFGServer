@@ -14,7 +14,7 @@ import requests
 from django.conf import settings
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import Tenants
+from .models import Tenants, Rooms
 from rest_framework_simplejwt.authentication import JWTAuthentication
 import json
 
@@ -127,6 +127,29 @@ def tenant_features(request):
                 organized=data.get('organized'),
             )
             return JsonResponse({"message": "Data recevied succesfully"}, status=status.HTTP_200_OK)
+        
+        except Exception as error:
+            return JsonResponse({"message": str(error)}, status = status.HTTP_400_BAD_REQUEST)
+        
+@api_view(['POST'])  # Change to GET if needed
+def lessor_room(request):
+    print("Entering lessor room api")
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            if data != None:
+            # room = Rooms.objects.create(
+
+            #     direction = data.get("direction"),
+            #     city = data.get("city"),
+            #     state = data.get("state"),
+            #     rooms = data.get("rooms"),
+            #     bathrooms=data.get('bathrooms'),
+            #     metters=data.get('metters'),
+            #     price=data.get('price'),
+            #     description=data.get('description'),
+            # )
+                return JsonResponse({"message": "Data recevied succesfully"}, status=status.HTTP_200_OK)
         
         except Exception as error:
             return JsonResponse({"message": str(error)}, status = status.HTTP_400_BAD_REQUEST)
