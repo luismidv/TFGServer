@@ -110,7 +110,7 @@ def tenant_features(request):
         try:
             user = request.user
             data = json.loads(request.body)
-            tenants = tenants.objects.create(
+            tenants = Tenants.objects.create(
 
                 name = data.get("names"),
                 surnames = data.get("surnames"),
