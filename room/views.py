@@ -112,18 +112,18 @@ def tenant_features(request):
             data = json.loads(request.body)
             tenants = Tenants.objects.create(
 
-                name = data.get("names"),
+                names = data.get("names"),
                 surnames = data.get("surnames"),
                 age = data.get("age"),
                 email = data.get("email"),
-                worktime=data.get('worktime'),
-                biorythm=data.get('biorythm'),
+                worktimes=data.get('worktime'),
+                schedules=data.get('biorythm'),
                 studies_level=data.get('studies'),
                 read=data.get('read'),
                 pets=data.get('pets'),
                 cookies=data.get('cook'),
                 sport=data.get('sport'),
-                smoke=data.get('smoke'),
+                smoking=data.get('smoke'),
                 organized=data.get('organized'),
             )
             return JsonResponse({"message": "Data recevied succesfully"}, status=status.HTTP_200_OK)

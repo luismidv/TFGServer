@@ -35,6 +35,7 @@ class Tenants(models.Model):
     worktimes = models.TextField(max_length=100)
     schedules = models.TextField(max_length=100)
     studies_level = models.TextField(max_length=100)
+    read = models.TextField(max_length=20)
     pets = models.TextField(max_length=150)
     cookies = models.TextField(max_length=100)
     sport = models.TextField(max_length=100)
