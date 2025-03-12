@@ -126,7 +126,7 @@ def tenant_features(request):
                 smoking=data.get('smoke'),
                 organized=data.get('organized'),
             )
-            return JsonResponse({"message": "Data recevied succesfully"}, status=status.HTTP_200_OK)
+            return JsonResponse({"message": tenants}, status=status.HTTP_200_OK)
         
         except Exception as error:
             return JsonResponse({"message": str(error)}, status = status.HTTP_400_BAD_REQUEST)
