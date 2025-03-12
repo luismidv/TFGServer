@@ -149,7 +149,7 @@ def lessor_room(request):
                  price=data.get('price'),
                  description=data.get('description'),
             )
-                return JsonResponse({"message": room}, status=status.HTTP_200_OK)
+                return JsonResponse({"message": "Room registered "}, status=status.HTTP_200_OK)
         
         except Exception as error:
             return JsonResponse({"message": str(error)}, status = status.HTTP_400_BAD_REQUEST)
