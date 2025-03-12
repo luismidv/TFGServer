@@ -138,17 +138,17 @@ def lessor_room(request):
         try:
             data = json.loads(request.body)
             if data != None:
-            # room = Rooms.objects.create(
+                room = Rooms.objects.create(
 
-            #     direction = data.get("direction"),
-            #     city = data.get("city"),
-            #     state = data.get("state"),
-            #     rooms = data.get("rooms"),
-            #     bathrooms=data.get('bathrooms'),
-            #     metters=data.get('metters'),
-            #     price=data.get('price'),
-            #     description=data.get('description'),
-            # )
+                 direction = data.get("direction"),
+                 city = data.get("city"),
+                 state = data.get("state"),
+                 rooms = data.get("rooms"),
+                 bathrooms=data.get('bathrooms'),
+                 metters=data.get('metters'),
+                 price=data.get('price'),
+                 description=data.get('description'),
+            )
                 return JsonResponse({"message": "Data recevied succesfully"}, status=status.HTTP_200_OK)
         
         except Exception as error:
