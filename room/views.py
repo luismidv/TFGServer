@@ -17,6 +17,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .models import Tenants, Rooms
 from rest_framework_simplejwt.authentication import JWTAuthentication
 import json
+from django.db import IntegrityError
+
 
 
 
@@ -137,6 +139,7 @@ def lessor_room(request):
     if request.method == "POST":
         try:
             data = json.loads(request.body)
+            print("Received data:", data)
             if data != None:
                 room = Rooms.objects.create(
 
@@ -150,7 +153,9 @@ def lessor_room(request):
                  description=data.get('description'),
             )
                 return JsonResponse({"message": "Room registered "}, status=status.HTTP_200_OK)
-        
+        except IntegrityError as e:
+            return JsonResponse({"error": "Database Integrity Error", "details": str(e)}, status=400)
+
         except Exception as error:
             return JsonResponse({"message": str(error)}, status = status.HTTP_400_BAD_REQUEST)
 
