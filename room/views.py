@@ -148,7 +148,7 @@ def lessor_room(request):
                     return JsonResponse({"error": f"Missing or null field: {field}"}, status=400)
             
             print(f"Creating room with: {data}")
-            room = Rooms.objects.create(
+            room = Rooms.objects.save(
                 direction=str(data["direction"]),
                 city=str(data["city"]),
                 state=str(data["state"]),
