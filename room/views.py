@@ -140,19 +140,26 @@ def lessor_room(request):
         try:
             data = json.loads(request.body)
             print("Received data:", data)
-            if data != None:
-
-                room = Rooms.objects.create(
-                    direction=str(data["direction"]),
-                    city=str(data["city"]),
-                    state=str(data["state"]),
-                    rooms=str(data["rooms"]),  # Ensure it's stored as a string
-                    bathrooms=str(data["bathrooms"]),
-                    metters=str(data["metters"]),
-                    price=str(data["price"]),
-                    description=str(data["description"]),
+            required_fields = ["direction", "city", "state", "rooms", "bathrooms", "metters", "price", "description"]
+            
+            for field in required_fields:
+                if field not in data or data[field] is None:
+                    print(f"Missing or null field: {field}")  # Debugging print
+                    return JsonResponse({"error": f"Missing or null field: {field}"}, status=400)
+            
+            print(f"Creating room with: {data}")
+            room = Rooms.objects.create(
+                direction=str(data["direction"]),
+                city=str(data["city"]),
+                state=str(data["state"]),
+                rooms=str(data["rooms"]),
+                bathrooms=str(data["bathrooms"]),
+                metters=str(data["metters"]),
+                price=str(data["price"]),
+                description=str(data["description"]),
             )
-                return JsonResponse({"message": "Room registered "}, status=status.HTTP_200_OK)
+            return JsonResponse({"message": "Room registered "}, status=status.HTTP_200_OK)
+        
         except IntegrityError as e:
             return JsonResponse({"error": "Database Integrity Error", "details": str(e)}, status=400)
 

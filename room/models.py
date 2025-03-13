@@ -4,7 +4,6 @@ from django.db import models
 
 #MODEL OF THE LESSOR TABLE IN THE KOYEB DB
 class Lessor(models.Model):
-    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     telephone = models.CharField(max_length=9)
     email = models.CharField(max_length=50)
@@ -30,7 +29,6 @@ class Rooms(models.Model):
 
 #MODEL OF THE TENANTS TABLE IN THE KOYEB DB
 class Tenants(models.Model):
-    id = models.AutoField(primary_key=True)
     names = models.CharField(max_length=255)
     surnames = models.CharField(max_length=50)
     age = models.CharField(max_length=20)
