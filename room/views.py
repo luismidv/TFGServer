@@ -141,16 +141,16 @@ def lessor_room(request):
             data = json.loads(request.body)
             print("Received data:", data)
             if data != None:
-                room = Rooms.objects.create(
 
-                 direction = data.get("direction"),
-                 city = data.get("city"),
-                 state = data.get("state"),
-                 rooms = data.get("rooms"),
-                 bathrooms=data.get('bathrooms'),
-                 metters=data.get('metters'),
-                 price=data.get('price'),
-                 description=data.get('description'),
+                room = Rooms.objects.create(
+                direction=str(data["direction"]),
+                city=str(data["city"]),
+                state=str(data["state"]),
+                rooms=str(data["rooms"]),  # Ensure it's stored as a string
+                bathrooms=str(data["bathrooms"]),
+                metters=str(data["metters"]),
+                price=str(data["price"]),
+                description=data["description"],
             )
                 return JsonResponse({"message": "Room registered "}, status=status.HTTP_200_OK)
         except IntegrityError as e:
