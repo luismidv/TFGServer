@@ -150,7 +150,7 @@ def lessor_room(request):
                 bathrooms=str(data["bathrooms"]),
                 metters=str(data["metters"]),
                 price=str(data["price"]),
-                description=data["description"],
+                description=str(data["description"]),
             )
                 return JsonResponse({"message": "Room registered "}, status=status.HTTP_200_OK)
         except IntegrityError as e:
