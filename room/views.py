@@ -158,7 +158,7 @@ def lessor_room(request):
                 price=str(data["price"]),
                 description=str(data["description"]),
             )
-            return JsonResponse({"message": "Room registered "}, status=status.HTTP_200_OK)
+            return JsonResponse({"message": data, "direction": data["direction"], "city": data["city"]}, status=status.HTTP_200_OK)
         
         except IntegrityError as e:
             return JsonResponse({"error": "Database Integrity Error", "details": str(e)}, status=400)
