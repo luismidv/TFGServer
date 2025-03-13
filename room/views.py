@@ -113,6 +113,46 @@ def tenant_features(request):
         try:
             user = request.user
             data = json.loads(request.body)
+            tenants = Tenants.objects.create(
+
+                names = data.get("names"),
+                surnames = data.get("surnames"),
+                age = data.get("age"),
+                email = data.get("email"),
+                worktimes=data.get('worktime'),
+                schedules=data.get('biorythm'),
+                studies_level=data.get('studies'),
+                read=data.get('read'),
+                pets=data.get('pets'),
+                cookies=data.get('cook'),
+                sport=data.get('sport'),
+                smoking=data.get('smoke'),
+                organized=data.get('organized'),
+            )
+            return JsonResponse({"message": tenants}, status=status.HTTP_200_OK)
+        
+        except Exception as error:
+            return JsonResponse({"message": str(error)}, status = status.HTTP_400_BAD_REQUEST)
+        
+def asd():
+    with connection.cursor() as cursor:
+        cursor.execute("""
+            INSERT INTO your_app_rooms (direction, city, state, rooms, bathrooms, metters, price, description) 
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                    """, [
+                        data.get("direction"), data.get("city"), data.get("state"),
+                        data.get("rooms"), data.get("bathrooms"), data.get("metters"),
+                        data.get("price"), data.get("description")
+
+        ])
+        
+@csrf_exempt 
+def lessor_room(request):
+    print("Entering lessor room api")
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            print("Received data:", data)
             with connection.cursor() as cursor:
                 cursor.execute("""
                     INSERT INTO rooms (direction, city, state, rooms, bathrooms, metters, price, description) 
@@ -122,38 +162,6 @@ def tenant_features(request):
                         data["rooms"], data["bathrooms"], data["metters"],
                         data["price"], data["description"]
                     ])
-            return JsonResponse({"message": data}, status=status.HTTP_200_OK)
-        
-        except Exception as error:
-            return JsonResponse({"message": str(error)}, status = status.HTTP_400_BAD_REQUEST)
-        
-
-        
-@csrf_exempt 
-def lessor_room(request):
-    print("Entering lessor room api")
-    if request.method == "POST":
-        try:
-            data = json.loads(request.body)
-            print("Received data:", data)
-            required_fields = ["direction", "city", "state", "rooms", "bathrooms", "metters", "price", "description"]
-            
-            for field in required_fields:
-                if field not in data or data[field] is None:
-                    print(f"Missing or null field: {field}")  # Debugging print
-                    return JsonResponse({"error": f"Missing or null field: {field}"}, status=400)
-            
-            print(f"Creating room with: {data}")
-            room = Rooms.objects.save(
-                direction=str(data["direction"]),
-                city=str(data["city"]),
-                state=str(data["state"]),
-                rooms=str(data["rooms"]),
-                bathrooms=str(data["bathrooms"]),
-                metters=str(data["metters"]),
-                price=str(data["price"]),
-                description=str(data["description"]),
-            )
             return JsonResponse({"message": data, "direction": data["direction"], "city": data["city"]}, status=status.HTTP_200_OK)
         
         except IntegrityError as e:
