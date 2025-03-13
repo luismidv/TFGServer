@@ -18,6 +18,7 @@ from .models import Tenants, Rooms
 from rest_framework_simplejwt.authentication import JWTAuthentication
 import json
 from django.db import IntegrityError
+from django.db import connection
 
 
 
@@ -112,26 +113,21 @@ def tenant_features(request):
         try:
             user = request.user
             data = json.loads(request.body)
-            tenants = Tenants.objects.create(
-
-                names = data.get("names"),
-                surnames = data.get("surnames"),
-                age = data.get("age"),
-                email = data.get("email"),
-                worktimes=data.get('worktime'),
-                schedules=data.get('biorythm'),
-                studies_level=data.get('studies'),
-                read=data.get('read'),
-                pets=data.get('pets'),
-                cookies=data.get('cook'),
-                sport=data.get('sport'),
-                smoking=data.get('smoke'),
-                organized=data.get('organized'),
-            )
-            return JsonResponse({"message": tenants}, status=status.HTTP_200_OK)
+            with connection.cursor() as cursor:
+                cursor.execute("""
+                    INSERT INTO rooms (direction, city, state, rooms, bathrooms, metters, price, description) 
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                    """, [
+                        data["direction"], data["city"], data["state"],
+                        data["rooms"], data["bathrooms"], data["metters"],
+                        data["price"], data["description"]
+                    ])
+            return JsonResponse({"message": data}, status=status.HTTP_200_OK)
         
         except Exception as error:
             return JsonResponse({"message": str(error)}, status = status.HTTP_400_BAD_REQUEST)
+        
+
         
 @csrf_exempt 
 def lessor_room(request):
