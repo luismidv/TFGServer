@@ -134,18 +134,6 @@ def tenant_features(request):
         except Exception as error:
             return JsonResponse({"message": str(error)}, status = status.HTTP_400_BAD_REQUEST)
         
-def asd():
-    with connection.cursor() as cursor:
-        cursor.execute("""
-            INSERT INTO your_app_rooms (direction, city, state, rooms, bathrooms, metters, price, description) 
-                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-                    """, [
-                        data.get("direction"), data.get("city"), data.get("state"),
-                        data.get("rooms"), data.get("bathrooms"), data.get("metters"),
-                        data.get("price"), data.get("description")
-
-        ])
-        
 @csrf_exempt 
 def lessor_room(request):
     print("Entering lessor room api")
@@ -154,10 +142,18 @@ def lessor_room(request):
             data = json.loads(request.body)
             print("Received data:", data)
             with connection.cursor() as cursor:
+                cursor.execute = ("SELECT MAX(CAST(id AS INTEGER)) FROM ROOMS")
+                result = cursor.fetchone()
+                if result is not None:
+                    new_id = int(result[0])
+                    new_id +=1
+                    new_id = str(new_id)
+                else:
+                    return 0
                 cursor.execute("""
                     INSERT INTO rooms (direction, city, state, rooms, bathrooms, metters, price, description) 
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-                    """, [
+                    """, [new_id,
                         data["direction"], data["city"], data["state"],
                         data["rooms"], data["bathrooms"], data["metters"],
                         data["price"], data["description"]
