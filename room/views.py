@@ -128,7 +128,7 @@ def tenant_features(request):
                     """, [new_id,
                         data["names"], data["surnames"], data["age"],
                         data["email"], data["worktime"], data["biorythm"],
-                        data["studies"], data["read"],data["pets"], 
+                        data["studies"],data["pets"], 
                         data["cook"], data["sport"], data["smoke"], data["organized"]
                     ])
             return JsonResponse({"message": "tenant created"}, status=status.HTTP_200_OK)
