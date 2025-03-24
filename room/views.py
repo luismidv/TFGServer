@@ -173,7 +173,7 @@ def lessor_room(request):
                     INSERT INTO lessor (id, name, telephone, email) 
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                     """, [new_id2,
-                        data["name"], data["telephone"], data["email"]
+                        data["names"], data["telephone"], data["email"]
                         
                     ])
             return JsonResponse({"message": data, "direction": data["direction"], "city": data["city"]}, status=status.HTTP_200_OK)
