@@ -123,7 +123,7 @@ def tenant_features(request):
                 else:
                     return 0
                 cursor.execute("""
-                    INSERT INTO tenants (id, names, surnames, age, email, worktimes, schedules, "studies level", pets, cooking, sport, smoking, organized) 
+                    INSERT INTO tenants (id, names, surnames, age, email, worktimes, schedules, "studieslevel", pets, cooking, sport, smoking, organized) 
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s)
                     """, [new_id,
                         data["names"], data["surnames"], data["age"],
