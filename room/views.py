@@ -171,7 +171,7 @@ def lessor_room(request):
                     return 0
                 cursor.execute("""
                     INSERT INTO lessor (id, name, telephone, email) 
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    VALUES (%s, %s, %s, %s,)
                     """, [new_id2,
                         data["names"], data["telephone"], data["email"]
                         
