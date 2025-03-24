@@ -113,23 +113,25 @@ def tenant_features(request):
         try:
             user = request.user
             data = json.loads(request.body)
-            tenants = Tenants.objects.create(
-
-                names = data.get("names"),
-                surnames = data.get("surnames"),
-                age = data.get("age"),
-                email = data.get("email"),
-                worktimes=data.get('worktime'),
-                schedules=data.get('biorythm'),
-                studies_level=data.get('studies'),
-                read=data.get('read'),
-                pets=data.get('pets'),
-                cookies=data.get('cook'),
-                sport=data.get('sport'),
-                smoking=data.get('smoke'),
-                organized=data.get('organized'),
-            )
-            return JsonResponse({"message": tenants}, status=status.HTTP_200_OK)
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT MAX(CAST(id AS INTEGER)) FROM tenants")
+                result = cursor.fetchone()
+                if result is not None:
+                    new_id = int(result[0])
+                    new_id +=1
+                    new_id = str(new_id)
+                else:
+                    return 0
+                cursor.execute("""
+                    INSERT INTO tenants (id, names, surnames, age, email, worktime, biorythm, studies, read, pets, cook, sport, smoke, organized) 
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s)
+                    """, [new_id,
+                        data["names"], data["surnames"], data["age"],
+                        data["email"], data["worktime"], data["biorythm"],
+                        data["studies"], data["read"],data["pets"], 
+                        data["cook"], data["sport"], data["smoke"], data["organized"]
+                    ])
+            return JsonResponse({"message": "tenant created"}, status=status.HTTP_200_OK)
         
         except Exception as error:
             return JsonResponse({"message": str(error)}, status = status.HTTP_400_BAD_REQUEST)
@@ -142,7 +144,7 @@ def lessor_room(request):
             data = json.loads(request.body)
             print("Received data:", data)
             with connection.cursor() as cursor:
-                cursor.execute = ("SELECT MAX(CAST(id AS INTEGER)) FROM ROOMS")
+                cursor.execute("SELECT MAX(CAST(id AS INTEGER)) FROM rooms")
                 result = cursor.fetchone()
                 if result is not None:
                     new_id = int(result[0])
