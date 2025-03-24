@@ -124,12 +124,12 @@ def tenant_features(request):
                     return 0
                 cursor.execute("""
                     INSERT INTO tenants (id, names, surnames, age, email, worktimes, schedules, "studieslevel", pets, cooking, sport, smoking, organized) 
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s)
-                    """, [new_id,
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s)
+                    """,[new_id,
                         data["names"], data["surnames"], data["age"],
                         data["email"], data["worktime"], data["biorythm"],
-                        data["studies"],data["pets"], 
-                        data["cook"], data["sport"], data["smoke"], data["organized"]
+                        data["studies"],data["pets"],data["cook"], 
+                        data["sport"], data["smoke"], data["organized"]
                     ])
             return JsonResponse({"message": "tenant created"}, status=status.HTTP_200_OK)
         
