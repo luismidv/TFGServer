@@ -142,8 +142,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'koyebdb',
         'USER': 'koyeb-adm',
-        'PASSWORD': 'npg_PlTL6MNce8xt',
-        'HOST': 'ep-jolly-math-a2gyj2sb.eu-central-1.pg.koyeb.app',
+        'PASSWORD': 'npg_KHVk3qBon6Yu',
+        'HOST': 'ep-rough-fire-a27dp2i1.eu-central-1.pg.koyeb.app',
         'OPTIONS': {'sslmode': 'require'},
     }
 }
