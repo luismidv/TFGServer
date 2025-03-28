@@ -80,9 +80,6 @@ def authenticate_user(username,new_pass):
 def create_user(username, email, password):
     user = User.objects.create_user(username, email, password)
     return user
-
-def create_lessor(username, email ,password):
-
 @api_view(['POST'])  # Change to GET if needed
 @permission_classes([IsAuthenticated])  # Ensures JWT authentication
 def algo_view(request):
