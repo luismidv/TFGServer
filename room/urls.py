@@ -20,4 +20,5 @@ urlpatterns = [
     path('api/algo_view/', views.algo_view, name='algo_view'),
     path('api/tenants_features/', views.tenant_features, name="tenant_features"),
     path('api/lessor_room/', views.lessor_room, name="lessor_room"),
+    path('api/lessor_identificaiton', views.lessor_identification, name="lessor_identification")
 ]

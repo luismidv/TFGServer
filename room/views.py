@@ -19,6 +19,8 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 import json
 from django.db import IntegrityError
 from django.db import connection
+from django.contrib.auth.hashers import make_password, check_password
+
 
 
 
@@ -78,6 +80,8 @@ def authenticate_user(username,new_pass):
 def create_user(username, email, password):
     user = User.objects.create_user(username, email, password)
     return user
+
+def create_lessor(username, email ,password):
 
 @api_view(['POST'])  # Change to GET if needed
 @permission_classes([IsAuthenticated])  # Ensures JWT authentication
@@ -185,7 +189,33 @@ def lessor_room(request):
             return JsonResponse({"message": str(error)}, status = status.HTTP_400_BAD_REQUEST)
 
 
-
+@csrf_exempt
+def lessor_identification(request):
+    if request.method == "POST":
+        data = json.load(request.body)
+        type = data["type"]
+        
+        if type == "Register":
+            with connection.cursor as cursor:
+                cursor.execute("SELECT MAX(CAST(id AS INTEGER)) FROM auth_lessor")
+                result = cursor.fetchone()
+                if result is not None:
+                    new_id = int(result[0])
+                    new_id +=1
+                    new_id = str(new_id)
+                else:
+                    new_id = 0
+                
+                new_password = make_password(data["password"])
+                cursor.execute("""
+                    INSERT INTO auth_lessor (id, username, email, telephone, password) 
+                    VALUES (%s, %s, %s, %s, %s, %s)
+                    """, [new_id,
+                        data["names"], data["telephone"], data["email"], new_password
+                    ])
+            print("Register part")
+        else:
+            print("Login part")
 
 def change_password(user,new_password):
     u = User.objects.get(username=user)
