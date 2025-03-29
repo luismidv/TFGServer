@@ -218,7 +218,7 @@ def lessor_identification(request):
                 cursor.execute("SELECT password FROM auth_lessor WHERE username == " + "'"+ username + "'")
                 result = cursor.fetchone()
                 if result == None:
-                    return JsonResponse("message" : "There is no user for the introduced credential in our database")
+                    return JsonResponse({"message":"There is no user for the introduced credential in our database"})
                 password_check = check_password(password, result[4])
                 if password_check == True:
                     return JsonResponse({"message" : "Login correct", "success" : True})
