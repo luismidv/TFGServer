@@ -210,9 +210,20 @@ def lessor_identification(request):
                     """, [new_id,
                         data["names"], data["telephone"], data["email"], new_password
                     ])
-            print("Register part")
+            
         else:
-            print("Login part")
+            with connection.cursor as cursor:
+                username = data["username"]
+                password = data["password"]
+                cursor.execute("SELECT password FROM auth_lessor WHERE username == " + "'"+ username + "'")
+                result = cursor.fetchone()
+                if result == None:
+                    return JsonResponse("message" : "There is no user for the introduced credential in our database")
+                password_check = check_password(password, result[4])
+                if password_check == True:
+                    return JsonResponse({"message" : "Login correct", "success" : True})
+                else:
+                    return JsonResponse({"message": "Login incorrect", "success": False})
 
 def change_password(user,new_password):
     u = User.objects.get(username=user)
