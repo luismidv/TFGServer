@@ -193,7 +193,7 @@ def lessor_identification(request):
         type = data["type"]
         
         if type == "Register":
-            with connection.cursor as cursor:
+            with connection.cursor() as cursor:
                 cursor.execute("SELECT MAX(CAST(id AS INTEGER)) FROM auth_lessor")
                 result = cursor.fetchone()
                 if result is not None:
