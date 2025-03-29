@@ -208,7 +208,7 @@ def lessor_identification(request):
                     INSERT INTO auth_lessor (id, username, email, telephone, password) 
                     VALUES (%s, %s, %s, %s, %s)
                     """, [new_id,
-                        data["names"], data["telephone"], data["email"], new_password
+                        data["username"], data["telephone"], data["email"], new_password
                     ])
             
         else:
