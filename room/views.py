@@ -189,7 +189,7 @@ def lessor_room(request):
 @csrf_exempt
 def lessor_identification(request):
     if request.method == "POST":
-        data = json.load(request.body)
+        data = json.loads(request.body)
         type = data["type"]
         
         if type == "Register":
