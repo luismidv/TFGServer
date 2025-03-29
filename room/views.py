@@ -210,7 +210,7 @@ def lessor_identification(request):
                     """, [new_id,
                         data["username"], data["telephone"], data["email"], new_password
                     ])
-            return JsonResponse ("message" : "User registered correctly")
+            return JsonResponse ({"message" : "User registered correctly"})
             
         else:
             with connection.cursor() as cursor:
