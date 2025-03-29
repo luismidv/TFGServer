@@ -201,23 +201,23 @@ def lessor_identification(request):
                     new_id +=1
                     new_id = str(new_id)
                 else:
-                    new_id = 0
+                    new_id = str(0)
                 
                 new_password = make_password(data["password"])
                 cursor.execute("""
                     INSERT INTO auth_lessor (id, username, email, telephone, password) 
-                    VALUES (%s, %s, %s, %s, %s, %s)
+                    VALUES (%s, %s, %s, %s, %s)
                     """, [new_id,
                         data["names"], data["telephone"], data["email"], new_password
                     ])
             
         else:
-            with connection.cursor as cursor:
+            with connection.cursor() as cursor:
                 username = data["username"]
                 password = data["password"]
                 cursor.execute("SELECT password FROM auth_lessor WHERE username == " + "'"+ username + "'")
                 result = cursor.fetchone()
-                if result == None:
+                if result is None:
                     return JsonResponse({"message":"There is no user for the introduced credential in our database"})
                 password_check = check_password(password, result[4])
                 if password_check == True:
