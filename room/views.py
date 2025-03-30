@@ -161,22 +161,7 @@ def lessor_room(request):
                         data["rooms"], data["bathrooms"], data["metters"],
                         data["price"], data["description"]
                     ])
-                
-                cursor.execute("SELECT MAX(CAST(id AS INTEGER)) FROM lessor")
-                result2 = cursor.fetchone()
-                if result2 is not None:
-                    new_id2 = int(result2[0])
-                    new_id2 +=1
-                    new_id2 = str(new_id2)
-                else:
-                    return 0
-                cursor.execute("""
-                    INSERT INTO lessor (id, name, telephone, email) 
-                    VALUES (%s, %s, %s, %s,)
-                    """, [new_id2,
-                        data["names"], data["telephone"], data["email"]
-                        
-                    ])
+
             return JsonResponse({"message": data, "direction": data["direction"], "city": data["city"]}, status=status.HTTP_200_OK)
         
         except IntegrityError as e:
@@ -223,7 +208,7 @@ def lessor_identification(request):
                     return JsonResponse({"message":"There is no user for the introduced credential in our database"})
                 password_check = check_password(password, result[4])
                 if password_check == True:
-                    return JsonResponse({"message" : "Login correct", "success" : True})
+                    return JsonResponse({"message" : "Login correct", "lessor_id" : result[0]})
                 else:
                     return JsonResponse({"message": "Login incorrect", "success": False})
                 
