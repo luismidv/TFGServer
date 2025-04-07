@@ -209,7 +209,7 @@ def lessor_identification(request):
                     return JsonResponse({"message":"There is no user for the introduced credential in our database"})
                 password_check = check_password(password, result[4])
                 if password_check == True:
-                    get_rooms(username):
+                    get_rooms(username)
                     return JsonResponse({"message" : "Login correct", "lessor_id" : result[0]})
                 
                 else:
