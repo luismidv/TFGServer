@@ -214,17 +214,17 @@ def lessor_identification(request):
                     return JsonResponse({"message" : "Login incorrect"})
         
                 
-                
+@csrf_exempt                
 def log_lessor(username, password):
     with connection.cursor() as cursor:
         cursor.execute("SELECT password FROM auth_lessor WHERE username =" + "'"+ username + "'")
         result = cursor.fetchone()
         if result is not None:
-            return check_password(password, result[0])
+            return check_password(result[0], password)
         else:
             return False
             
-
+@csrf_exempt
 def get_rooms(username):
     with connection.cursor() as cursor:
         try:
