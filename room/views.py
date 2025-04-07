@@ -196,6 +196,7 @@ def lessor_identification(request):
                         data["username"], data["email"], data["telephone"], new_password
                     ])
                 log_lessor(data["username"], data["password"])
+
             return JsonResponse ({"message" : "User registered correctly"})
             
         else:
@@ -208,18 +209,25 @@ def lessor_identification(request):
                     return JsonResponse({"message":"There is no user for the introduced credential in our database"})
                 password_check = check_password(password, result[4])
                 if password_check == True:
+                    get_rooms(username):
                     return JsonResponse({"message" : "Login correct", "lessor_id" : result[0]})
+                
                 else:
                     return JsonResponse({"message": "Login incorrect", "success": False})
                 
 def log_lessor(username, password):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT password FROM auth_lessor WHERE username == " + "'"+ username + "'")
+        cursor.execute("SELECT password FROM auth_lessor WHERE username = " + "'"+ username + "'")
         result = cursor.fetchone()
         if result is not None:
             password_check = check_password(password, result[4])
             if password_check == True:
                     return JsonResponse({"message" : "Login correct", "success" : True})
+
+def get_rooms(username):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM ")
+
 def change_password(user,new_password):
     u = User.objects.get(username=user)
     u.set_password(new_password)
