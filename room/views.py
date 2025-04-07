@@ -235,6 +235,7 @@ def get_rooms(username):
             """, [username])
             columns = [col[0] for col in cursor.description]
             result = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            print(f"Received query data {result}")
             return result
         except Exception as e:
             print(f"Error while trying to get user rooms:  {e}")
