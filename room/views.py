@@ -209,9 +209,9 @@ def lessor_identification(request):
                 log_bool = log_lessor(username,password)
                 if log_bool:
                     lessor_information = get_rooms(username)
-                    return JsonResponse({"message" : "Login correct", "rooms_data" : lessor_information})
+                    return JsonResponse({"message" : "Login correct", "rooms_data" : lessor_information, "introduced_password" : log_bool})
                 else:
-                    return JsonResponse({"message" : "Login incorrect", "password" : lessor_information})
+                    return JsonResponse({"message" : "Login incorrect", "password" : lessor_information, "introduced_password" : log_bool})
         
                 
 @csrf_exempt                
