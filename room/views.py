@@ -220,13 +220,20 @@ def log_lessor(username, password):
         cursor.execute("SELECT password FROM auth_lessor WHERE username = " + "'"+ username + "'")
         result = cursor.fetchone()
         if result is not None:
-            password_check = check_password(password, result[4])
+            password_check = check_password(password, result)
             if password_check == True:
                     return JsonResponse({"message" : "Login correct", "success" : True})
 
 def get_rooms(username):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM ")
+        try:
+            cursor.execute("SELECT * FROM rooms JOIN auth_lessor on rooms.lessor_id = auth_lessor.id WHERE username = " + "'" + username + "'")
+            result = cursor.fetchall()
+            if result is not None:
+                username = result[1]
+
+        except Exception as e:
+            print(f"Error while trying to get user rooms:  {e}")
 
 def change_password(user,new_password):
     u = User.objects.get(username=user)
