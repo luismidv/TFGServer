@@ -230,7 +230,8 @@ def get_rooms(username):
             cursor.execute("SELECT * FROM rooms JOIN auth_lessor on rooms.lessor_id = auth_lessor.id WHERE username = " + "'" + username + "'")
             result = cursor.fetchall()
             if result is not None:
-                username = result[1]
+                return result
+
 
         except Exception as e:
             print(f"Error while trying to get user rooms:  {e}")
