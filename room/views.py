@@ -193,7 +193,7 @@ def lessor_identification(request):
                     INSERT INTO auth_lessor (id, username, email, telephone, password) 
                     VALUES (%s, %s, %s, %s, %s)
                     """, [new_id,
-                        data["username"], data["telephone"], data["email"], new_password
+                        data["username"], data["email"], data["telephone"], new_password
                     ])
                 log_lessor(data["username"], data["password"])
             return JsonResponse ({"message" : "User registered correctly"})
