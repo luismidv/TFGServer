@@ -217,14 +217,13 @@ def lessor_identification(request):
                 
 def log_lessor(username, password):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT password FROM auth_lessor WHERE username = " + "'"+ username + "'")
+        cursor.execute("SELECT password FROM auth_lessor WHERE username =" + "'"+ username + "'")
         result = cursor.fetchone()
         if result is not None:
-            password_check = check_password(password, result[0])
-            if password_check == True:
-                return True
-            else:
-                return False
+            return check_password(password, result[0])
+        else:
+            return False
+            
 
 def get_rooms(username):
     with connection.cursor() as cursor:
