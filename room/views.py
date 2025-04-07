@@ -211,7 +211,7 @@ def lessor_identification(request):
                     lessor_information = get_rooms(username)
                     return JsonResponse({"message" : "Login correct", "rooms_data" : lessor_information})
                 else:
-                    return JsonResponse({"message" : "Login incorrect"})
+                    return JsonResponse({"message" : "Login incorrect", "password" : lessor_information})
         
                 
 @csrf_exempt                
@@ -220,9 +220,10 @@ def log_lessor(username, password):
         cursor.execute("SELECT password FROM auth_lessor WHERE username =" + "'"+ username + "'")
         result = cursor.fetchone()
         if result is not None:
-            return check_password(password, result[0])
+            pass_bool = check_password(password, result[0])
+            return result[0]
         else:
-            return False
+            return result[0]
             
 @csrf_exempt
 def get_rooms(username):
