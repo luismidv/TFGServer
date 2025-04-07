@@ -209,7 +209,7 @@ def lessor_identification(request):
                 log_bool = log_lessor(username,password)
                 if log_bool:
                     lessor_information = get_rooms(username)
-                    return JsonResponse({"message" : "Login correct", "lessor_data" : lessor_information})
+                    return JsonResponse({"message" : "Login correct", "rooms_data" : lessor_information})
         
                 
                 
@@ -227,7 +227,7 @@ def log_lessor(username, password):
 def get_rooms(username):
     with connection.cursor() as cursor:
         try:
-            cursor.execute("SELECT * FROM rooms JOIN auth_lessor on rooms.lessor_id = auth_lessor.id WHERE username = " + "'" + username + "'")
+            cursor.execute("SELECT rooms.* FROM auth_lessor JOIN rooms ON auth_lessor.id = rooms.lessor_id WHERE auth_lessor.username =" + "'" + username + "'")
             result = cursor.fetchall()
             if result is not None:
                 return result
