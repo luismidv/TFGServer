@@ -197,7 +197,7 @@ def lessor_identification(request):
                     ])
                 log_bool = log_lessor(data["username"], data["password"])
                 if log_bool:
-                    lessor_information = get_rooms(username)
+                    lessor_information = get_rooms(data["username"])
                     return JsonResponse({"message" : "Register correct", "lessor_data" : lessor_information})
                 else:
                     return JsonResponse({"message" : "Login failed"})
