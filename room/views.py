@@ -227,12 +227,15 @@ def log_lessor(username, password):
 def get_rooms(username):
     with connection.cursor() as cursor:
         try:
-            cursor.execute("SELECT rooms.* FROM auth_lessor JOIN rooms ON auth_lessor.id = rooms.lessor_id WHERE auth_lessor.username =" + "'" + username + "'")
-            result = cursor.fetchall()
-            if result is not None:
-                return result
-
-
+            cursor.execute("""
+                SELECT rooms.* 
+                FROM auth_lessor 
+                JOIN rooms ON auth_lessor.id = rooms.lessor_id 
+                WHERE auth_lessor.username = %s
+            """, [username])
+            columns = [col[0] for col in cursor.description]
+            result = [dict(zip(columns, row)) for row in cursor.fetchall()]
+            return result
         except Exception as e:
             print(f"Error while trying to get user rooms:  {e}")
 
