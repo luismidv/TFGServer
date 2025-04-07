@@ -220,7 +220,7 @@ def log_lessor(username, password):
         cursor.execute("SELECT password FROM auth_lessor WHERE username =" + "'"+ username + "'")
         result = cursor.fetchone()
         if result is not None:
-            return check_password(result[0], password)
+            return check_password(password, result[0])
         else:
             return False
             
