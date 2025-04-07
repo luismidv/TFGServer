@@ -220,7 +220,7 @@ def log_lessor(username, password):
         cursor.execute("SELECT password FROM auth_lessor WHERE username = " + "'"+ username + "'")
         result = cursor.fetchone()
         if result is not None:
-            password_check = check_password(password, result)
+            password_check = check_password(password, result[0])
             if password_check == True:
                     return JsonResponse({"message" : "Login correct", "success" : True})
 
