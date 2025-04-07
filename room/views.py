@@ -195,25 +195,23 @@ def lessor_identification(request):
                     """, [new_id,
                         data["username"], data["email"], data["telephone"], new_password
                     ])
-                log_lessor(data["username"], data["password"])
-
-            return JsonResponse ({"message" : "User registered correctly"})
+                log_bool = log_lessor(data["username"], data["password"])
+                if log_bool:
+                    lessor_information = get_rooms(username)
+                    return JsonResponse({"message" : "Register correct", "lessor_data" : lessor_information})
+                else:
+                    return JsonResponse({"message" : "Login failed"})
             
         else:
             with connection.cursor() as cursor:
                 username = data["username"]
                 password = data["password"]
-                cursor.execute("SELECT * FROM auth_lessor WHERE username = " + "'"+ username + "'")
-                result = cursor.fetchone()
-                if result is None:
-                    return JsonResponse({"message":"There is no user for the introduced credential in our database"})
-                password_check = check_password(password, result[4])
-                if password_check == True:
-                    get_rooms(username)
-                    return JsonResponse({"message" : "Login correct", "lessor_id" : result[0]})
+                log_bool = log_lessor(username,password)
+                if log_bool:
+                    lessor_information = get_rooms(username)
+                    return JsonResponse({"message" : "Login correct", "lessor_data" : lessor_information})
+        
                 
-                else:
-                    return JsonResponse({"message": "Login incorrect", "success": False})
                 
 def log_lessor(username, password):
     with connection.cursor() as cursor:
@@ -222,7 +220,9 @@ def log_lessor(username, password):
         if result is not None:
             password_check = check_password(password, result[0])
             if password_check == True:
-                    return JsonResponse({"message" : "Login correct", "success" : True})
+                return True
+            else:
+                return False
 
 def get_rooms(username):
     with connection.cursor() as cursor:
