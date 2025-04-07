@@ -221,9 +221,9 @@ def log_lessor(username, password):
         result = cursor.fetchone()
         if result is not None:
             pass_bool = check_password(password, result[0])
-            return result[0]
+            return pass_bool
         else:
-            return result[0]
+            return pass_bool
             
 @csrf_exempt
 def get_rooms(username):
