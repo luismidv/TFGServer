@@ -230,7 +230,7 @@ def get_rooms(username):
     with connection.cursor() as cursor:
         try:
             cursor.execute("""
-                SELECT rooms.* 
+                SELECT rooms.*, username
                 FROM auth_lessor 
                 JOIN rooms ON auth_lessor.id = rooms.lessor_id 
                 WHERE auth_lessor.username = %s
