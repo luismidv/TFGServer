@@ -210,6 +210,8 @@ def lessor_identification(request):
                 if log_bool:
                     lessor_information = get_rooms(username)
                     return JsonResponse({"message" : "Login correct", "rooms_data" : lessor_information})
+                else:
+                    return JsonResponse({"message" : "Login incorrect"})
         
                 
                 
