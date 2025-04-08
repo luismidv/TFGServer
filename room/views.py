@@ -154,7 +154,7 @@ def lessor_room(request):
                 else:
                     return 0
                 cursor.execute("""
-                    INSERT INTO rooms (id, direction, city, state, rooms, bathrooms, metters, price, description) 
+                    INSERT INTO rooms (id, direction, city, state, rooms, bathrooms, metters, price, description, lessor_id) 
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     """, [new_id,
                         data["direction"], data["city"], data["state"],
