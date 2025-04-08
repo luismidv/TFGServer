@@ -159,7 +159,7 @@ def lessor_room(request):
                     """, [new_id,
                         data["direction"], data["city"], data["state"],
                         data["rooms"], data["bathrooms"], data["metters"],
-                        data["price"], data["description"]
+                        data["price"], data["description"], data["lessorId"]
                     ])
 
             return JsonResponse({"message": data, "direction": data["direction"], "city": data["city"]}, status=status.HTTP_200_OK)
