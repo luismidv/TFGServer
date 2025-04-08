@@ -206,22 +206,22 @@ def lessor_identification(request):
             with connection.cursor() as cursor:
                 username = data["username"]
                 password = data["password"]
-                log_bool = log_lessor(username,password)
+                id,log_bool = log_lessor(username,password)
                 if log_bool:
                     lessor_information = get_rooms(username)
-                    return JsonResponse({"message" : "Login correct", "rooms_data" : lessor_information, "introduced_password" : log_bool})
+                    return JsonResponse({"message" : "Login correct", "rooms_data" : lessor_information, "lessor_id" : id})
                 else:
                     return JsonResponse({"message" : "Login incorrect", "password" : lessor_information, "introduced_password" : log_bool})
         
-                
 @csrf_exempt                
 def log_lessor(username, password):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT password FROM auth_lessor WHERE username =" + "'"+ username + "'")
+        cursor.execute("SELECT id,password FROM auth_lessor WHERE username =" + "'"+ username + "'")
         result = cursor.fetchone()
         if result is not None:
-            pass_bool = check_password(password, result[0])
-            return pass_bool
+            pass_bool = check_password(password, result[1])
+            return_list = [result[0], pass_bool]
+            return return_list
         else:
             return pass_bool
             
@@ -241,6 +241,23 @@ def get_rooms(username):
             return result
         except Exception as e:
             print(f"Error while trying to get user rooms:  {e}")
+
+@csrf_exempt
+def room_mod(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        type = data["action"]
+        room_id = data["room_id"]
+
+        if type == "modification":
+            print("Modification actions")
+        
+        else:
+            with connection.cursor() as cursor:
+                cursor.execute("""
+                DELETE FROM rooms WHERE id = %s
+            """, [room_id])
+
 
 def change_password(user,new_password):
     u = User.objects.get(username=user)
