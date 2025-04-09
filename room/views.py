@@ -216,7 +216,7 @@ def lessor_identification(request):
         elif type == "Refresh":
             with connection.cursor() as cursor:
                 username = data["username"]
-                lessor_information = get_rooms("username")
+                lessor_information = get_rooms(username)
                 return JsonResponse({"message" : "Dara refreshed", "rooms_data" : lessor_information})
         
 @csrf_exempt                
