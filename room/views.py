@@ -217,7 +217,7 @@ def lessor_identification(request):
             with connection.cursor() as cursor:
                 username = data["username"]
                 lessor_information = get_rooms("username")
-                return JsonResponse({"message" : "Dara refreshed", "rooms_data" : lessor_information, "lessor_id" : id})
+                return JsonResponse({"message" : "Dara refreshed", "rooms_data" : lessor_information})
         
 @csrf_exempt                
 def log_lessor(username, password):
