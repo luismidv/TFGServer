@@ -21,5 +21,5 @@ urlpatterns = [
     path('api/tenants_features/', views.tenant_features, name="tenant_features"),
     path('api/lessor_room/', views.lessor_room, name="lessor_room"),
     path('api/lessor_identificaiton/', views.lessor_identification, name="lessor_identification"),
-    path('api/room_mod', views.room_mod, name="room_mod")
+    path('api/room_mod/', views.room_mod, name="room_mod")
 ]
