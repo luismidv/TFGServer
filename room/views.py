@@ -202,7 +202,7 @@ def lessor_identification(request):
                 else:
                     return JsonResponse({"message" : "Login failed"})
             
-        else:
+        elif type == "Login":
             with connection.cursor() as cursor:
                 username = data["username"]
                 password = data["password"]
@@ -212,6 +212,12 @@ def lessor_identification(request):
                     return JsonResponse({"message" : "Login correct", "rooms_data" : lessor_information, "lessor_id" : id})
                 else:
                     return JsonResponse({"message" : "Login incorrect", "password" : lessor_information, "introduced_password" : log_bool})
+        
+        elif type == "Refresh":
+            with connection.cursor() as cursor:
+                username = data["username"]
+                get_rooms("username")
+                return JsonResponse({"message" : "Dara refreshed", "rooms_data" : lessor_information, "lessor_id" : id})
         
 @csrf_exempt                
 def log_lessor(username, password):
