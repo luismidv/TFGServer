@@ -253,10 +253,16 @@ def room_mod(request):
             print("Modification actions")
         
         else:
-            with connection.cursor() as cursor:
-                cursor.execute("""
-                DELETE FROM rooms WHERE id = %s
-            """, [room_id])
+            try:
+                with connection.cursor() as cursor:
+                    cursor.execute("""
+                    DELETE FROM rooms WHERE id = %s
+                """, [room_id])
+                return JsonResponse({"message": f"Room deleted successfully"})
+            except Exception as error:
+                return JsonResponse({"message" : f"Error at deleting room {error}"})
+                
+
 
 
 def change_password(user,new_password):
