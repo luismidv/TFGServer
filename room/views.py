@@ -113,6 +113,7 @@ def tenant_features(request):
     if request.method == "POST":
         try:
             user = request.user
+            user_data = user.id
             data = json.loads(request.body)
             with connection.cursor() as cursor:
                 cursor.execute("SELECT MAX(CAST(id AS INTEGER)) FROM tenants")
@@ -132,7 +133,9 @@ def tenant_features(request):
                         data["studies"],data["pets"],data["cook"], 
                         data["sport"], data["smoke"], data["organized"]
                     ])
-            return JsonResponse({"message": "tenant created"}, status=status.HTTP_200_OK)
+            response = logged_algo_view(user_data)
+            response_data = response.json()
+            return JsonResponse({"message": "tenant created", "data": response_data}, status=status.HTTP_200_OK)
         
         except Exception as error:
             return JsonResponse({"message": str(error)}, status = status.HTTP_400_BAD_REQUEST)
@@ -269,7 +272,18 @@ def room_mod(request):
                 return JsonResponse({"message" : f"Error at deleting room {error}"})
                 
 
-
+def logged_algo_view(user_data):
+    try:
+        url = "https://luismidv-mlsystemtfg.hf.space/predict/"
+        params = {"id": str(user_data)}
+        response = requests.post(url, params = params)
+        if response.status_code == 200:
+            response_data = response.json()
+            return response_data
+    except Exception as e:
+        print(f"Exception ocurred {e}")
+        
+    
 
 def change_password(user,new_password):
     u = User.objects.get(username=user)
