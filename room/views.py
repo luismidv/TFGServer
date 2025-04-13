@@ -134,8 +134,7 @@ def tenant_features(request):
                         data["sport"], data["smoke"], data["organized"]
                     ])
             response = logged_algo_view(user_data)
-            response_data = response.json()
-            return JsonResponse({"message": "tenant created", "data": response_data}, status=status.HTTP_200_OK)
+            return JsonResponse({"message": "tenant created", "data": response}, status=status.HTTP_200_OK)
         
         except Exception as error:
             return JsonResponse({"message": str(error)}, status = status.HTTP_400_BAD_REQUEST)
