@@ -150,7 +150,7 @@ def lessor_room(request):
                 cursor.execute("SELECT MAX(CAST(id AS INTEGER)) FROM rooms")
                 result = cursor.fetchone()
                 if result is not None:
-                    new_id = int(result[0])
+                    new_id = int(result[0])         
                     new_id +=1
                     new_id = str(new_id)
                 else:
@@ -199,7 +199,7 @@ def lessor_identification(request):
                     ])
                 result = log_lessor(data["username"], data["password"])
                 if result[1]:
-                    return JsonResponse({"message" : "Register correct", "lessor_data" : result[0]})
+                    return JsonResponse({"message" : "Register correct", "lessor_data" : result[0], "username": data["username"]})
                 else:
                     return JsonResponse({"message" : "Login failed"})
             
