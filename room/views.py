@@ -197,10 +197,9 @@ def lessor_identification(request):
                     """, [new_id,
                         data["username"], data["email"], data["telephone"], new_password
                     ])
-                log_bool = log_lessor(data["username"], data["password"])
-                if log_bool:
-                    lessor_information = get_rooms(data["username"])
-                    return JsonResponse({"message" : "Register correct", "lessor_data" : lessor_information})
+                result = log_lessor(data["username"], data["password"])
+                if result[1]:
+                    return JsonResponse({"message" : "Register correct", "lessor_data" : result[0]})
                 else:
                     return JsonResponse({"message" : "Login failed"})
             
@@ -245,7 +244,6 @@ def get_rooms(username):
             """, [username])
             columns = [col[0] for col in cursor.description]
             result = [dict(zip(columns, row)) for row in cursor.fetchall()]
-            print(f"Received query data {result}")
             return result
         except Exception as e:
             print(f"Error while trying to get user rooms:  {e}")
