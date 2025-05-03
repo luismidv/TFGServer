@@ -278,7 +278,7 @@ def logged_algo_view(user_data):
         response = requests.post(url, params = params)
         if response.status_code == 200:
             response_data = response.json()
-            return JsonResponse(response_data)
+            return response_data
     except Exception as e:
         print(f"Exception ocurred {e}")
         
