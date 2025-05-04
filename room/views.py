@@ -254,10 +254,6 @@ def get_rooms(username):
             """, [username])
             columns = [col[0] for col in cursor.description]
             result = [dict(zip(columns, row)) for row in cursor.fetchall()]
-            if len(result) != 0:
-                return result
-            else:
-                
         except Exception as e:
             print(f"Error while trying to get user rooms:  {e}")
 
