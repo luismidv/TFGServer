@@ -211,7 +211,7 @@ def lessor_identification(request):
                 if log_bool:
                     lessor_information = get_rooms(username)
                     if len(lessor_information != 0):
-                        return JsonResponse({"message" : "Login correct", "rooms_data" : lessor_information, "lessor_id" : id})
+                        return JsonResponse({"message" : "Login correct", "rooms_data" : lessor_information, "lessor_data" : id})
                     else:
                         cursor.execute("""
                         SELECT id
