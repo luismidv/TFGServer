@@ -235,9 +235,9 @@ def lessor_identification(request):
                 result = cursor.fetchone()
                 lessor_information = get_rooms(username)
                 if len(lessor_information) != 0:
-                    return JsonResponse({"message" : "Data refreshed != 0", "rooms_data" : lessor_information, "username" : username ,"lessor_data" : result[0]})
-                else:
                     return JsonResponse({"message" : "Data refreshed != 0", "rooms_data" : lessor_information, "lessor_data" : result[0]})
+                else:
+                    return JsonResponse({"message" : "Data refreshed != 0", "rooms_data" : lessor_information, "username" : username , "lessor_data" : result[0]})
                 
         
 @csrf_exempt                
