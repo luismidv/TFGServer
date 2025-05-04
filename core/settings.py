@@ -137,7 +137,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 import dj_database_url
 
-DATABASES = {
+DATABASES = {   
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'koyebdb',
