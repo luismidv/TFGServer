@@ -210,7 +210,17 @@ def lessor_identification(request):
                 id,log_bool = log_lessor(username,password)
                 if log_bool:
                     lessor_information = get_rooms(username)
-                    return JsonResponse({"message" : "Login correct", "rooms_data" : lessor_information, "lessor_id" : id})
+                    if len(lessor_information != 0):
+                        return JsonResponse({"message" : "Login correct", "rooms_data" : lessor_information, "lessor_id" : id})
+                    else:
+                        cursor.execute("""
+                        SELECT id
+                        FROM auth_lessor 
+                        WHERE auth_lessor.username = %s
+                        """, [username])
+                        result = cursor.fetchone()
+                        return JsonResponse({"message" : "Login correct", "rooms_data" : lessor_information, "lessor_data" : result[0]})
+
                 else:
                     return JsonResponse({"message" : "Login incorrect", "password" : lessor_information, "introduced_password" : log_bool})
         
@@ -244,7 +254,10 @@ def get_rooms(username):
             """, [username])
             columns = [col[0] for col in cursor.description]
             result = [dict(zip(columns, row)) for row in cursor.fetchall()]
-            return result
+            if len(result) != 0:
+                return result
+            else:
+                
         except Exception as e:
             print(f"Error while trying to get user rooms:  {e}")
 
